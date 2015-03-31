@@ -1,0 +1,180 @@
+﻿#EXTM3U
+
+
+#EXTINF:0, HÀ NỘI 1
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=hntv1_2500
+#EXTINF:0, HÀ NỘI 2
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=hntv2_1000
+#EXTINF:0, LẠNG SƠN TV
+rtmp://123.18.206.40/live/ playpath=livestream swfUrl=http://hktivi.name.vn/player.swf pageUrl=http://hktivi.name.vn/kenh/langson.php swfVfy=true live=true timeout=60
+
+
+
+
+#EXTINF:0, ANTV
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=antv_2500
+#EXTINF:0, FBNC
+http://203.162.235.26/lives/origin02/fbncsd.isml/fbncsd-1096k.m3u8
+#EXTINF:0, HTV2
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htv2_2500
+#EXTINF:0, HTV3
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htv3_2500
+#EXTINF:0, HTV7 
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htv7_2500
+#EXTINF:0, HTV9
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htv9_2500
+#EXTINF:0, HTV THỂ THAO
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htvcthethao_2500
+#EXTINF:0, HTVC+ HD
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htvcplusHD_2500
+#EXTINF:0, HTVC DU LỊCH
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htvcdulich_2500
+#EXTINF:0, HTVC GIA ĐÌNH
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htvcgiadinh_2500
+#EXTINF:0, HTVC PHIM HD
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htvcmovieHD_2500
+#EXTINF:0, HTVC SHOPPING
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htvcshopping_2500
+#EXTINF:0, THUẦN VIỆT HD
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=htvcthuanvietHD_2500
+#EXTINF:0, N+ HD
+rtmp://123.30.134.108/live playpath=nctlive swfUrl=http://stc.lala.gonct.info/public/flash/rtmp-3.swf pageUrl=http://www.123tivi.com/2013/03/xem-kenh-nhac-cua-tui-nct-online.html
+#EXTINF:0, QPVN HD
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=quocphongHD_2500
+#EXTINF:0, TTXVN
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vnews_2500
+#EXTINF:0, PHIM HAY
+http://203.162.235.26/lives/origin01/phimhaysd.isml/phimhaysd.m3u8
+#EXTINF:0, NHAC TRE
+http://203.162.235.26/lives/origin03/nhactresd.isml/nhactresd.m3u8
+
+
+
+#EXTINF:0, VTV1
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtv1_2500
+#EXTINF:0, VTV2
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtv2_2500
+#EXTINF:0, VTV3 HD
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtv3HD_2500
+#EXTINF:0, VTV4
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtv4_2500
+#EXTINF:0, VTV6
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtv6_2500
+#EXTINF:0, VTV9 
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtv9_2500
+
+
+
+
+#EXTINF:0, VTV CAB 2
+http://live.accessasia.tv:1935/vnptg_channels/vctv2.480p/playlist.m3u8
+#EXTINF:0, VTV CAB 4
+http://live.accessasia.tv:1935/vnptg_channels/vctv4.480p/playlist.m3u8
+#EXTINF:0, VTV CAB 10
+http://live.accessasia.tv:1935/vnptg_channels/mp4:vctv10.480p/playlist.m3u8
+ 
+
+
+
+
+#EXTINF:0, VTC HD1
+http://203.162.235.26/lives/origin03/vtchd1hd.isml/vtchd1hd.m3u8
+#EXTINF:0, VTC HD2
+http://203.162.235.26/lives/origin03/vtchd2hd.isml/vtchd2hd.m3u8
+#EXTINF:0, VTC HD3
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtcHD3_2500
+#EXTINF:0, VTC3 HD
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtc3HD_2500
+#EXTINF:0, VTC1
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtc1_2500
+#EXTINF:0, VTC2
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtc2_2500
+#EXTINF:0, VTC3
+http://203.162.235.26/lives/origin01/vtc3sd.isml/vtc3sd-1096k.m3u8
+#EXTINF:0, VTC4
+http://203.162.235.26/lives/origin01/vtc4sd.isml/vtc4sd-1096k.m3u8
+#EXTINF:0, VTC5
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtc5_2500
+#EXTINF:0, VTC6
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtc6_2500
+#EXTINF:0, VTC7
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtc7_2500
+#EXTINF:0, VTC8
+http://203.162.235.26/lives/origin01/vtc8sd.isml/vtc8sd-1096k.m3u8
+#EXTINF:0, VTC9
+http://203.162.235.26/lives/origin01/vtc9sd.isml/vtc9sd-1096k.m3u8
+#EXTINF:0, VTC10
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtc10_2500
+#EXTINF:0, VTC11
+http://203.162.235.26/lives/origin01/vtc11sd.isml/vtc11sd-1096k.m3u8
+#EXTINF:0, VTC12
+http://203.162.235.26/lives/origin01/vtc12sd.isml/vtc12sd-1096k.m3u8
+#EXTINF:0, VTC13
+http://203.162.235.26/lives/origin01/vtc13sd.isml/vtc13sd-1096k.m3u8
+#EXTINF:0, VTC14
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtc14_2500
+#EXTINF:0, VTC16
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=vtc16_2500
+#EXTINF:0, ITV HD
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=itvHD_2500
+
+
+
+
+#EXTINF:0, SCTV1
+rtmpe://112.197.2.154:1935/live//sctv1_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV2
+rtmpe://112.197.2.154:1935/live//sctv2_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV3
+rtmpe://112.197.2.154:1935/live//sctv3_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV4
+rtmpe://112.197.2.154:1935/live//sctv4_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV5
+rtmpe://112.197.2.154:1935/live//sctv5_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV6
+rtmpe://112.197.2.154:1935/live//sctv6_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV7
+rtmpe://112.197.2.154:1935/live//sctv7_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV8
+rtmpe://112.197.2.154:1935/live//sctv8_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV9
+rtmpe://112.197.2.154:1935/live//sctv9_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV10
+rtmpe://112.197.2.154:1935/live//sctv10_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV11
+rtmpe://112.197.2.154:1935/live//sctv11_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV12
+rtmpe://112.197.2.154:1935/live//sctv12_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV13
+rtmpe://112.197.2.154:1935/live//sctv13_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV14
+rtmpe://112.197.2.154:1935/live//sctv14_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV15
+rtmpe://112.197.2.154:1935/glive//sctv15_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV16
+rtmpe://112.197.2.154:1935/live//sctv16_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV17
+rtmpe://112.197.2.154:1935/live//sctv17_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV18
+rtmpe://112.197.2.154:1935/live//sctvhdthethao_2 swfUrl=http://tv24.vn/getflash.ashx pageUrl=http://tv24.vn/ token=1b#K8!3zc65ends!
+#EXTINF:0, SCTV-Hài
+http://live.accessasia.tv:1935/vnptg_channels/sctvhaihd.480p/playlist.m3u8
+
+
+
+#EXTINF:0, AXN HD
+http://203.162.235.26/lives/origin03/axnhd.isml/axnhd.m3u8
+#EXTINF:0, CINEMAX
+http://203.162.235.26/lives/origin03/cinemaxsd.isml/cinemaxsd.m3u8
+#EXTINF:0, DISCOVERY HD
+http://203.162.235.26/lives/origin03/discoveryhd.isml/discoveryhd.m3u8
+#EXTINF:0, HBO HD
+http://203.162.235.26/lives/origin03/hbohd.isml/hbohd.m3u8
+#EXTINF:0, ONE TV
+http://hao-tv-proxy1.appspot.com/fpt.m3u8?t=live&c=onetv_2500
+#EXTINF:0, STAR SPORTS
+http://203.162.235.26/lives/origin03/starsportsd.isml/starsportsd.m3u8
+
+
+
+

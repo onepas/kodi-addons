@@ -8,13 +8,17 @@ import xbmcplugin
 import xbmcgui
 import xbmcaddon
 import re, string, json
+import HTMLParser
+
+reload(sys);
+sys.setdefaultencoding("utf8")
 
 __settings__ = xbmcaddon.Addon(id='plugin.audio.vietmedia.music')
 __language__ = __settings__.getLocalizedString
 _home = __settings__.getAddonInfo('path')
 _icon = xbmc.translatePath( os.path.join( _home, 'icon.png' ) )
 _thumbnails = xbmc.translatePath( os.path.join( _home, 'thumbnails\\' ) )
-_vol1_url = 'http://beta.nhacso.net'
+_vol1_url = 'http://nhacso.net'
 _vol1_ajax_play_song_url = _vol1_url + '/songs/ajax-get-detail-song?dataId='
 _vol1_ajax_playlist_url = _vol1_url + '/playlists/ajax-get-detail-playlist?dataId='
 _vol1_playlist = _vol1_url + '/playlists-noi-bat.html?view_type=highlight&page='
@@ -24,7 +28,7 @@ _vol1_regex_playlist_album = '<img style="background-image: url\((.*?)\);".*?dat
 _vol1_regex_video = '<div class="figure"><img style="background-image: url\((.*?)\);".*?data-url="([^"]*)" data-name="([^"]*)" data-artists="([^"]*)".*?<i class="fa fa-heart"></i></a>'
 _vol1_regex_song = '<img style="background-image: url\((.*?)\);".*?class="song-thumb" alt="([^"]*)">\s*.*\s*.*\s*.*\s*.*\s*.*\s*.*\s*.*\s*<a .*object-id="([^"]*)" object-type="song" data-url-song="([^"]*)" song-name=".*?" data-artist="([^"]*)"'
 
-_vol1_regex_play_video = '<source src="([^"]*)" type=\'(.*?)\'>'
+_vol1_regex_play_video = 'src: "([^"]*)",\s*type: "([^"]*)"'
 _vol1_regex_load_more = '<div class="load-more"><a class="load-more-link is-load-ajax is-load-more" data-id-content="([^"]*)" href="([^"]*)" page="([^"]*)">Xem thêm</a> </div>'
 
 __thumbnails = []
@@ -41,43 +45,46 @@ def _makeCookieHeader(cookie):
 
 def make_request(url, headers=None):
   if headers is None:
-      headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
+    headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
                  'Referer' : 'http://www.google.com'}
   try:
-      req = urllib2.Request(url,headers=headers)
-      f = urllib2.urlopen(req)
-      body=f.read()
-      return body
-  except urllib2.URLError, e:
-      print 'We failed to open "%s".' % url
-      if hasattr(e, 'reason'):
-          print 'We failed to reach a server.'
-          print 'Reason: ', e.reason
-      if hasattr(e, 'code'):
-          print 'We failed with error code - %s.' % e.code
-
+    req = urllib2.Request(url,headers=headers)
+    f = urllib2.urlopen(req)
+    body=f.read()
+    return body
+  except:
+    pass
+    
 def alert(message):
   xbmcgui.Dialog().ok("Oops!","",message)
 
 def color_artist(title, artist):
+  h = HTMLParser.HTMLParser()
   if title is not None:
-    title = title.strip()
+    title = str(h.unescape(title.strip()))
   if artist is not None:
-    artist = artist.strip()
+    artist = str(h.unescape(artist.strip()))
   if artist is not None and len(artist) > 0:
     return title + '[COLOR FF0084EA]-' + artist + '[/COLOR]'
   return title
 
 def vol_categories():
-  add_item('Music Vol1', '', "vol1", get_thumbnail_url())
-  add_item('Music Vol2', '', "vol2", get_thumbnail_url())
-  add_item('Music Vol3', '', "vol3", get_thumbnail_url())
+  add_item('Rạp hát 1', '', "vol1", get_thumbnail_url())
+  add_item('Rạp hát 2', '', "vol2", get_thumbnail_url())
+  add_item('Rạp hát 3', '', "vol3", get_thumbnail_url())
 
 def vol1_level1():
   add_item('Nổi bật', _vol1_url, "vol1_top",  get_thumbnail_url())
   add_item('Thể loại', _vol1_url, "vol1_category",  get_thumbnail_url())
-  add_item('Bảng xếp hạng', _vol1_url, "vol1_ranking",  get_thumbnail_url())
+  add_item('Bảng xếp hạng tuần', _vol1_url, "vol1_ranking",  get_thumbnail_url())
   add_item('Tìm kiếm', _vol1_url, "vol1_search",  get_thumbnail_url())
+
+def vol1_search_list():
+  add_item('Tìm bài hát', _vol1_url, "vol1_search_song",  get_thumbnail_url())
+  add_item('Tìm album', _vol1_url, "vol1_search_album",  get_thumbnail_url())
+  add_item('Tìm playlist', _vol1_url, "vol1_search_playlist",  get_thumbnail_url())
+  add_item('Tìm video', _vol1_url, "vol1_search_video",  get_thumbnail_url())
+  add_item('Tìm nghệ sỹ', _vol1_url, "vol1_search_artist",  get_thumbnail_url())
 
 def vol1_category_list():
   add_item('Việt Nam', _vol1_url +'/the-loai-album/viet-nam-12.html', "vol1_category_vietnam",  get_thumbnail_url())
@@ -86,6 +93,62 @@ def vol1_category_list():
   add_item('Nhạc Hoa', _vol1_url + '/the-loai-album/nhac-hoa-15.html', "vol1_catetory_cacnuoc",  get_thumbnail_url())
   add_item('Các nước khác', _vol1_url + '/the-loai-album/cac-nuoc-khac-18.html', "vol1_catetory_cacnuoc",  get_thumbnail_url())
   add_item('Nhạc chủ đề', _vol1_url +'/the-loai-album/nhac-chu-de-51.html', "vol1_category_vietnam",  get_thumbnail_url())
+
+def vol1_ranking_list():
+  add_item('Việt Nam (bài hát)', _vol1_url + '/bang-xep-hang/vietnam/song/tuan.html', "vol1_ranking_vietnam_song",  get_thumbnail_url())
+  add_item('Việt Nam (album)', _vol1_url + '/bang-xep-hang/vietnam/album/tuan.html', "vol1_ranking_vietnam_album",  get_thumbnail_url())
+  add_item('Việt Nam (video)', _vol1_url + '/bang-xep-hang/vietnam/video/tuan.html', "vol1_ranking_vietnam_video",  get_thumbnail_url())
+  add_item('Âu Mỹ', _vol1_url + '/bang-xep-hang/aumy.html', "vol1_ranking_aumy",  get_thumbnail_url())
+  add_item('Hàn Quốc', _vol1_url + '/bang-xep-hang/hanquoc.html', "vol1_ranking_aumy",  get_thumbnail_url())
+
+def vol1_search_song():
+  query = common.getUserInput('Nhập tên bài hát cần tìm')
+  if query is None or query=='':
+    return
+  
+  #cố gắng thử lại vài lần
+  for i in range(1,3):
+    url = _vol1_url + '/tim-kiem-bai-hat.html?keyName=' + urllib.quote_plus(query)
+    content = make_request(url)
+    if len(content) > 0:
+      break
+
+  regex = '<img style="background-image: url\((.*?)\);"\s*.*\s*.*\s*.*\s*<a class=.*?data-href="(.*?)".*data-name="(.*?)" data-artists="(.*?)".*object-id="(.*?)"'
+  match=re.compile(regex).findall(content)
+  for (thumb,link,title,artist,songid) in match:
+    data_url = _vol1_ajax_play_song_url + songid
+    add_item(color_artist(title.strip(),artist.strip()), data_url, "vol1_playsong", thumb, playable=True)
+
+def vol1_ranking_list_song(url):
+  content = make_request(url)
+  regex = 'style="background-image:url\((.*?)\)">\s*.*\s*.*object-id="(.*?)".*data-href="(.*?)".*\s*.*\s*.*html">(.*?)</a> </a></h3>\s*.*html">(.*?)</a></a>'
+  match=re.compile(regex).findall(content)
+  for (thumb,songid,link,title,artist) in match:
+    data_url = _vol1_ajax_play_song_url + songid
+    add_item(color_artist(title.strip(),artist.strip()), data_url, "vol1_playsong", thumb, playable=True)
+
+def vol1_ranking_list_album(url):
+  content = make_request(url)
+  regex = 'style="background-image:url\((.*?)\)">\s*.*\s*.*object-id="(.*?)".*\s*.*\s*.*data-href="(.*?)".*html">(.*?)</a> </a></h3>\s*.*html">(.*?)</a></a>'
+  match=re.compile(regex).findall(content)
+  for (thumb,songid,link,title,artist) in match:
+    add_item(color_artist(title.strip(),artist.strip()), _vol1_url + link, "vol1_playlist", thumb)
+
+def vol1_ranking_list_video(url):
+  content = make_request(url)
+  regex = 'style="background-image:url\((.*?)\)">\s*.*\s*.*\s*.*\s*.*data-href="(.*?)".*html">(.*?)</a> </a></h3>\s*.*html">(.*?)</a></a>'
+  match=re.compile(regex).findall(content)
+  for (thumb,link,title,artist) in match:
+    add_item(color_artist(title.strip(),artist.strip()), _vol1_url + link, "vol1_playvideo", thumb, playable=True)
+
+def vol1_ranking_list_aumy(url):
+  content = make_request(url)
+  regex = 'style="background-image:url\((.*?)\)".*s*.*\s*.*\s*.*object-id="(.*?)".*data-href="(.*?)".*\s*.*\s*.*html">(.*?)</a> </a></h3>\s*.*html">(.*?)</a></a>'
+  match=re.compile(regex).findall(content)
+  for (thumb,songid,link,title,artist) in match:
+    data_url = _vol1_ajax_play_song_url + songid
+    add_item(color_artist(title.strip(),artist.strip()), data_url, "vol1_playsong", thumb, playable=True)
+
 
 def vol1_catetory_vietnam(url):
   content = make_request(url)
@@ -313,9 +376,9 @@ if mode==None:
 elif mode=="vol1":
   vol1_level1()
 elif mode=="vol2":
-  alert('Sắp phát hành Vol2')
+  alert('Chuẩn bị xây rạp hát 2, đang tìm nguồn')
 elif mode=="vol3":
-  alert('Sắp phát hành Vol3')
+  alert('Chuẩn bị xây rạp hát 3, đang tìm nguồn')
 elif mode=="vol1_category":
   vol1_category_list()
 elif mode=="vol1_top":
@@ -326,7 +389,16 @@ elif mode=="vol1_category_album_list":
   vol_category_album_list(url,page)
 elif mode=="vol1_catetory_cacnuoc":
   vol1_catetory_cacnuoc(url)
-
+elif mode=="vol1_ranking":
+  vol1_ranking_list()
+elif mode=="vol1_ranking_vietnam_song":
+  vol1_ranking_list_song(url)
+elif mode=="vol1_ranking_vietnam_album":
+  vol1_ranking_list_album(url)
+elif mode=="vol1_ranking_vietnam_video":
+  vol1_ranking_list_video(url)
+elif mode=="vol1_ranking_aumy":
+  vol1_ranking_list_aumy(url)
 elif mode=="vol1_top_playlist":
   vol1_level1_data_playlist(url)
 elif mode=="vol1_top_album":
@@ -343,7 +415,18 @@ elif mode=="vol1_playsong":
   vol1_play_song(url)
 elif mode=="vol1_playvideo":
   vol1_play_video(url)
-
+elif mode=="vol1_search":
+  vol1_search_list()
+elif mode=="vol1_search_song":
+  vol1_search_song()
+elif mode=="vol1_search_album":
+  alert('Đang xây dựng...')
+elif mode=="vol1_search_playlist":
+  alert('Đang xây dựng...')
+elif mode=="vol1_search_video":
+  alert('Đang xây dựng...')
+elif mode=="vol1_search_artist":
+  alert('Đang xây dựng...')
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
 

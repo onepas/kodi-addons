@@ -43,6 +43,9 @@ def fetch_data(url, headers=None):
 def alert(message):
   xbmcgui.Dialog().ok("Oops!","",message)
 
+def notification(message, timeout=7000):
+  xbmc.executebuiltin((u'XBMC.Notification("%s", "%s", %s)' % ('VietMedia', message, timeout)).encode("utf-8"))
+
 def extract(key, enc):
     dec = []
     enc = base64.urlsafe_b64decode(enc)
@@ -91,8 +94,21 @@ def buildCinemaMenu(url):
       add_item(title,url,"default",thumb,plot=description,playable=playable)
   elif jsonObject.get('url'):
     link = jsonObject['url']
+    subtitle = ''
+    if jsonObject.get('subtitle'):
+      subtitle = jsonObject['subtitle']
+
     listitem = xbmcgui.ListItem(path=link)
     xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)
+    if len(subtitle) > 0:
+      subtitlePath = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path')).decode("utf-8")
+      subfile = xbmc.translatePath(os.path.join(subtitlePath, "temp.sub"))
+      urllib.urlretrieve (subtitle,subfile )
+      xbmc.sleep(2000)
+      xbmc.Player().setSubtitles(subfile)
+    else:
+      notification('Phim này không có phụ đề rời.');
+
   elif jsonObject.get('error') is not None:
     alert(jsonObject['error'])
 

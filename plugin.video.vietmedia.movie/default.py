@@ -94,6 +94,13 @@ def buildCinemaMenu(url):
       add_item(title,url,"default",thumb,plot=description,playable=playable)
   elif jsonObject.get('url'):
     link = jsonObject['url']
+    if jsonObject.get('regex'):
+      try:
+        regex = jsonObject['regex']
+        content = fetch_data(link)
+        link=re.compile(regex).findall(content)[0]  
+      except:
+        pass
     subtitle = ''
     if jsonObject.get('subtitle'):
       subtitle = jsonObject['subtitle']
@@ -106,8 +113,8 @@ def buildCinemaMenu(url):
       urllib.urlretrieve (subtitle,subfile )
       xbmc.sleep(2000)
       xbmc.Player().setSubtitles(subfile)
-    else:
-      notification('Phim này không có phụ đề rời.');
+    elif jsonObject.get('subtitle'):
+      notification('Video này không có phụ đề rời.');
 
   elif jsonObject.get('error') is not None:
     alert(jsonObject['error'])

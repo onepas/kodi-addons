@@ -10,7 +10,7 @@ import xbmcplugin
 import xbmcgui
 import xbmcaddon
 import re, string, json
-import base64
+import base64,uuid
 
 
 reload(sys);
@@ -18,9 +18,14 @@ sys.setdefaultencoding("utf8")
 
 __settings__ = xbmcaddon.Addon(id='plugin.video.vietmedia.movie')
 __language__ = __settings__.getLocalizedString
+__profile__ = xbmc.translatePath( __settings__.getAddonInfo('profile') ).decode("utf-8")
+
 _home = __settings__.getAddonInfo('path')
 _icon = xbmc.translatePath( os.path.join( _home, 'icon.png' ))
+
 _homeUrl = 'maSklWtfX5ualaSQoJSZU6SVopuWmKSZoV6TlJ5qY1VhYF-Imp6VkpJfplY='
+_version = '1.0.3'
+_user = 'vietmedia'
 
 def make_cookie_header(cookie):
   cookieHeader = ""
@@ -29,9 +34,14 @@ def make_cookie_header(cookie):
   return cookieHeader
 
 def fetch_data(url, headers=None):
+  visitor = get_visitor()
   if headers is None:
-    headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0',
-                 'Referers' : 'http://www..google.com'}
+    headers = { 'User-agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0',
+                'Referers':'http://www..google.com',
+                'X-Visitor':visitor,
+                'X-Version':_version,
+                'X-User':_user
+              }
   try:
     req = urllib2.Request(url,headers=headers)
     f = urllib2.urlopen(req)
@@ -119,6 +129,25 @@ def buildCinemaMenu(url):
   elif jsonObject.get('error') is not None:
     alert(jsonObject['error'])
 
+def get_visitor():
+  filename = os.path.join( __profile__, 'visitor.dat' )
+  visitor = ''
+
+  if os.path.exists(filename):
+    with open(filename, "r") as f:
+      visitor = f.readline()
+  else:
+    try:
+      visitor = str(uuid.uuid1())
+    except:
+      visitor = str(uuid.uuid4())
+    
+    if not os.path.exists(__profile__):
+      os.makedirs(__profile__)
+    with open(filename, "w") as f:
+      f.write(visitor)
+
+  return visitor
 
 def get_params():
   param=[]

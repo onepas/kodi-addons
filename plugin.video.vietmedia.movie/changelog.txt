@@ -6,3 +6,6 @@ Version 1.0.1 (12/4/2015):
 
 Version 1.0.2 (13/4/2015):
 - Regex từ client
+
+Version 1.0.4 (15/4/2015):
+- Thêm youtube

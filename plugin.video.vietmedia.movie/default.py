@@ -11,7 +11,7 @@ import xbmcgui
 import xbmcaddon
 import re, string, json
 import base64,uuid
-
+import rap1
 
 reload(sys);
 sys.setdefaultencoding("utf8")
@@ -24,7 +24,7 @@ _home = __settings__.getAddonInfo('path')
 _icon = xbmc.translatePath( os.path.join( _home, 'icon.png' ))
 
 _homeUrl = 'maSklWtfX5ualaSQoJSZU6SVopuWmKSZoV6TlJ5qY1VhYF-Imp6VkpJfplY='
-_version = '1.0.3'
+_version = '1.0.5'
 _user = 'vietmedia'
 
 def make_cookie_header(cookie):
@@ -50,8 +50,8 @@ def fetch_data(url, headers=None):
   except:
     pass
     
-def alert(message):
-  xbmcgui.Dialog().ok("Oops!","",message)
+def alert(message,title="Oops!"):
+  xbmcgui.Dialog().ok(title,"",message)
 
 def notification(message, timeout=7000):
   xbmc.executebuiltin((u'XBMC.Notification("%s", "%s", %s)' % ('VietMedia', message, timeout)).encode("utf-8"))
@@ -65,21 +65,22 @@ def extract(key, enc):
         dec.append(dec_c)
     return "".join(dec)
 
-def add_item(name,url,mode,iconimage,query='',type='f',plot='',page=0,playable=False):
-  u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&query="+str(query)+"&type="+str(type)+"&page="+str(page)
+def add_item(name,url,mode,iconimage,plot='',playable=False):
+  u=sys.argv[0] + "?url="+urllib.quote_plus(url)+"&mode="+str(mode)
   ok=True
-  liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+  li=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
   if playable:
-    liz.setProperty('IsPlayable', 'true')
-  liz.setInfo( type="Video", infoLabels={ "Title": name, "plot":plot } )
-  ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=(not playable))
+    li.setProperty('IsPlayable', 'true')
+    
+  li.setInfo( type="Video", infoLabels={ "Title": name, "plot":plot } )
+  ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=li,isFolder=(not playable))
   return ok
 
 def buildCinemaMenu(url):
   if (url is None):
-    url = extract('100%',_homeUrl)
-
-  if ':query' in url:
+    url =  extract('100%',_homeUrl) 
+    
+  if url is not None and ':query' in url:
     keyboardHandle = xbmc.Keyboard('','Enter search text')
     keyboardHandle.doModal()
     if (keyboardHandle.isConfirmed()):
@@ -91,8 +92,12 @@ def buildCinemaMenu(url):
     else:
       return
 
-  content = fetch_data(url)
-  jsonObject = json.loads(content)
+  if url.startswith('http://'):
+    content = fetch_data(url)
+    jsonObject = json.loads(content)
+  else:
+    jsonObject = eval(url)
+  
   if isinstance(jsonObject,list):
     for item in jsonObject:
       title = item['title']
@@ -103,6 +108,8 @@ def buildCinemaMenu(url):
 
       add_item(title,url,"default",thumb,plot=description,playable=playable)
   elif jsonObject.get('url'):
+    pDialog = xbmcgui.DialogProgressBG()
+    pDialog.create('', 'Đang tải video, vui lòng đợi giây lát...')
     link = jsonObject['url']
     if jsonObject.get('regex'):
       try:
@@ -120,12 +127,22 @@ def buildCinemaMenu(url):
     if len(subtitle) > 0:
       subtitlePath = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path')).decode("utf-8")
       subfile = xbmc.translatePath(os.path.join(subtitlePath, "temp.sub"))
-      urllib.urlretrieve (subtitle,subfile )
-      xbmc.sleep(2000)
-      xbmc.Player().setSubtitles(subfile)
+      try:
+        if os.path.exists(subfile):
+          os.remove(subfile)
+        f = urllib2.urlopen(subtitle)
+        with open(subfile, "wb") as code:
+          code.write(f.read())
+        xbmc.sleep(3000)
+        xbmc.Player().setSubtitles(subfile)
+      except:
+        notification('Không tải được phụ đề phim.');
+      #urllib.urlretrieve (subtitle,subfile )
     elif jsonObject.get('subtitle'):
       notification('Video này không có phụ đề rời.');
 
+    pDialog.update(100, message='Hoàn thành')
+    pDialog.close()
   elif jsonObject.get('error') is not None:
     alert(jsonObject['error'])
 
@@ -174,22 +191,8 @@ params=get_params()
 url=None
 name=None
 mode=None
-query=''
-type='f'
-page=1
+data=None
 
-try:
-    type=urllib.unquote_plus(params["type"])
-except:
-    pass
-try:
-    page=int(urllib.unquote_plus(params["page"]))
-except:
-    pass
-try:
-    query=urllib.unquote_plus(params["query"])
-except:
-    pass
 try:
     url=urllib.unquote_plus(params["url"])
 except:
@@ -202,9 +205,13 @@ try:
     mode=urllib.unquote_plus(params["mode"])
 except:
     pass
+try:
+    data=urllib.unquote_plus(params["data"])
+except:
+    pass
 
-
-buildCinemaMenu(url)
+if mode is None or mode == 'default':
+  buildCinemaMenu(url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
 

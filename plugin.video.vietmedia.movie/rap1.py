@@ -101,13 +101,17 @@ def thuynga_play(url):
 		return {'url':link}
 
 def dirs(url):
-	link=make_request(url)
+	content=make_request(url)
 	movies = []
-	match=re.compile('<a class="col-xs-12 link_title_header" href="/the-loai-more/(.+?)/1">\s*<span class="pull-left" >(.+?)</span >').findall(link)
-	
-	for url,name in match:	
-		movies.append({'title':name,'url': moduleName + '.plist("' + fptplay + 'get_all_vod_structure/news/' + url + '",page=1)', 'description':'','thumb': defaultThumbnail,'playable':False})
-		
+	soup = BeautifulSoup(str(content), convertEntities=BeautifulSoup.HTML_ENTITIES)
+	items = soup.findAll('a',{'class' : 'col-xs-12 link_title_header'})
+	for item in items:
+		url = item.get('href')
+		arr = url.split('/')
+		cate = arr[len(arr) - 2]
+		name = item.find('span').text
+		movies.append({'title':name,'url': moduleName + '.plist("' + fptplay + 'get_all_vod_structure/news/' + cate + '",page=1)', 'description':'','thumb': defaultThumbnail,'playable':False})
+
 	return movies
 
 def plist(url,page = 0):	
@@ -159,10 +163,12 @@ def search(query):
 	url = fptplay + '/search/' + urllib.quote_plus(query)
 	movies = []
 	link=make_request(url)
-	match=re.compile('<a href="(.+?)" title="(.+?)" class="item_image">\s*<img src="(.+?)".+?').findall(link)
+	match=re.compile('<a href="(.+?)" onclick=".*?" title="(.+?)" class="item_image">\s*<img src="(.+?)".+?').findall(link)
 
 	for url,name, thumbnail in match:
 		title = name.replace('&#39;',"'")
 		movies.append({'title':title,'url': moduleName + '.episodes("' + fptplay + url + '")', 'description':'','thumb': thumbnail,'playable':True})
 		
+	
 	return movies
+

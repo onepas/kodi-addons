@@ -13,3 +13,6 @@ Version 1.0.4 (15/4/2015):
 Version 1.0.5 (15/4/2015):
 - Fixed lỗi đôi khi không hiển thị phụ đề
 - Cho phép bổ sung source tại client.
+
+Version 1.0.6 (26/4/2015):
+- Fixed provider source changed

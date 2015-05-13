@@ -24,7 +24,7 @@ _home = __settings__.getAddonInfo('path')
 _icon = xbmc.translatePath( os.path.join( _home, 'icon.png' ))
 
 _homeUrl = 'maSklWtfX5ualaSQoJSZU6SVopuWmKSZoV6TlJ5qY1VhYF-Imp6VkpJfplY='
-_version = '1.0.5'
+_version = '1.0.7'
 _user = 'vietmedia'
 
 def make_cookie_header(cookie):

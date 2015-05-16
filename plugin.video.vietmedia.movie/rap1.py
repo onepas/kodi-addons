@@ -235,5 +235,5 @@ def vlinks(url):
 		return {'error':'Không tìm thấy link, hãy thử lại.'}
 
 def search(query):
-	#url = fptplay + '/search/' + urllib.quote_plus(query)
+	query = query.replace('+',' ')
 	return plist('key', 1, 1, 'search', query)

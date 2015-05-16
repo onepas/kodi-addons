@@ -19,3 +19,6 @@ Version 1.0.6 (26/4/2015):
 
 Version 1.0.7 (13/5/2015):
 - Fixed provider source changed (cinema 4)
+
+Version 1.0.8 (15/5/2015):
+- Fixed search (cinema 4)

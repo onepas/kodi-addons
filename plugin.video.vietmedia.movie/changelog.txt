@@ -22,3 +22,6 @@ Version 1.0.7 (13/5/2015):
 
 Version 1.0.8 (15/5/2015):
 - Fixed search (cinema 4)
+
+Version 1.0.9 (18/5/2015):
+- Removed progressdialogBG so it worked on XBMC 12

@@ -24,7 +24,7 @@ _home = __settings__.getAddonInfo('path')
 _icon = xbmc.translatePath( os.path.join( _home, 'icon.png' ))
 
 _homeUrl = 'maSklWtfX5ualaSQoJSZU6SVopuWmKSZoV6TlJ5qY1VhYF-Imp6VkpJfplY='
-_version = '1.0.7'
+_version = '1.0.9'
 _user = 'vietmedia'
 
 def make_cookie_header(cookie):
@@ -108,8 +108,6 @@ def buildCinemaMenu(url):
 
       add_item(title,url,"default",thumb,plot=description,playable=playable)
   elif jsonObject.get('url'):
-    pDialog = xbmcgui.DialogProgressBG()
-    pDialog.create('', 'Đang tải video, vui lòng đợi giây lát...')
     link = jsonObject['url']
     if jsonObject.get('regex'):
       try:
@@ -141,8 +139,6 @@ def buildCinemaMenu(url):
     elif jsonObject.get('subtitle'):
       notification('Video này không có phụ đề rời.');
 
-    pDialog.update(100, message='Hoàn thành')
-    pDialog.close()
   elif jsonObject.get('error') is not None:
     alert(jsonObject['error'])
 

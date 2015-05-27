@@ -188,19 +188,33 @@ def plist(cate,page = 1, series = 1, typep='new', keyword=''):
 
 def episodes(url):
 
-	content=make_request(url)
+	ll = url.split('-')
+	film_id = ll[len(ll)-1].replace('.html','')
 	
 	movies = []
 
-	soup = BeautifulSoup(str(content), convertEntities=BeautifulSoup.HTML_ENTITIES)
-	items = soup.findAll('div',{'class' : 'small_item'})
-	for item in items:
-		href = item.find('a',{'class' : 'title'})
-		link = href.get('href')
-		title = item.find('img').get('alt')
-		title = href.string + '-' + title
-		thumbnail = item.find('img').get('src')
-		movies.append({'title':title,'url': moduleName + '.vlinks("' + link + '")', 'description':'','thumb': thumbnail,'playable':True})
+	for p in xrange(1,20):
+		
+		params = {
+			'page':p,
+			'film_id': film_id
+		}
+
+		url = 'http://fptplay.net/show/episode'
+		content=make_request(url,params)
+		
+		if content is None:
+			break
+
+		soup = BeautifulSoup(str(content), convertEntities=BeautifulSoup.HTML_ENTITIES)
+		items = soup.findAll('div',{'class' : 'small_item'})
+		for item in items:
+			href = item.find('a',{'class' : 'title'})
+			link = href.get('href')
+			title = item.find('img').get('alt')
+			title = href.string + '-' + title
+			thumbnail = item.find('img').get('src')
+			movies.append({'title':title,'url': moduleName + '.vlinks("' + link + '")', 'description':'','thumb': thumbnail,'playable':True})
 		
 	if len(movies) == 0:
 		title = soup.find('h3',{'class' : 'col-xs-8 col-sm-8 col-md-8'}).string.strip()

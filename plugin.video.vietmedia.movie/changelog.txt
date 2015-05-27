@@ -25,3 +25,6 @@ Version 1.0.8 (15/5/2015):
 
 Version 1.0.9 (18/5/2015):
 - Removed progressdialogBG so it worked on XBMC 12
+
+Version 1.0.10 (27/5/2015):
+- Sửa lỗi rạp 4

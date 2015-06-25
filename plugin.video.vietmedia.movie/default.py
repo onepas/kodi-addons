@@ -24,7 +24,7 @@ _home = __settings__.getAddonInfo('path')
 _icon = xbmc.translatePath( os.path.join( _home, 'icon.png' ))
 
 _homeUrl = 'maSklWtfX5ualaSQoJSZU6SVopuWmKSZoV6TlJ5qY1VhYF-Imp6VkpJfplY='
-_version = '1.0.10'
+_version = '1.0.11'
 _user = 'vietmedia'
 
 def make_cookie_header(cookie):
@@ -78,7 +78,7 @@ def add_item(name,url,mode,iconimage,plot='',playable=False):
 
 def buildCinemaMenu(url):
   if (url is None):
-    url =  extract('100%',_homeUrl) 
+    url = extract('100%',_homeUrl) 
     
   if url is not None and ':query' in url:
     keyboardHandle = xbmc.Keyboard('','Enter search text')

@@ -28,10 +28,14 @@ def menu():
 	movies = []
 	movies.append({'title':'[COLOR ffff0000]Tìm kiếm[/COLOR]','url': moduleName + '.search(":query")', 'description':'','thumb': defaultThumbnail,'playable':False})
 
-	movies.append({'title':'Live TV (cần mồi)','url': moduleName + '.livetv("http://fptplay.net/livetv")', 'description':'','thumb': defaultThumbnail,'playable':False})
+	movies.append({'title':'Tivi','url': moduleName + '.livetv("http://fptplay.net/livetv")', 'description':'','thumb': defaultThumbnail,'playable':False})
 	
-	name = 'Phim'
-	url = 'danh-muc/5284685d169a585a2449c489/phim.html'
+	name = 'Phim lẻ'
+	url = 'danh-muc/5575429017dc1321ed858679/phim-le.html'
+	movies.append({'title':name,'url': moduleName + '.dirs("' + fptplay + url + '")', 'description':'','thumb': defaultThumbnail,'playable':False})
+	
+	name = 'Phim bộ'
+	url = 'danh-muc/55701c1517dc1321ee85857a/phim-bo.html'
 	movies.append({'title':name,'url': moduleName + '.dirs("' + fptplay + url + '")', 'description':'','thumb': defaultThumbnail,'playable':False})
 	
 	name = 'TV Show'

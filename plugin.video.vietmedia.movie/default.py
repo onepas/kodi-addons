@@ -12,6 +12,7 @@ import xbmcaddon
 import re, string, json
 import base64,uuid
 import rap1
+import client
 
 reload(sys);
 sys.setdefaultencoding("utf8")
@@ -109,6 +110,9 @@ def buildCinemaMenu(url):
       add_item(title,url,"default",thumb,plot=description,playable=playable)
   elif jsonObject.get('url'):
     link = jsonObject['url']
+    if 'phimhd3s.com' in link:
+      client_id = client.client_id_1()
+      link = link.replace('dc469e7a3c7f76e5bfcc0e104526fb85',client_id)
     if jsonObject.get('regex'):
       try:
         regex = jsonObject['regex']

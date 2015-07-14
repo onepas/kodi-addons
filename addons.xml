@@ -22,7 +22,7 @@
 
   <addon id="plugin.video.vietmedia.movie"
        name="VietMedia Movie"
-       version="1.0.12"
+       version="1.0.13"
        provider-name="VietMedia">
     <requires>
         <import addon="xbmc.python" version="2.1.0" />
@@ -37,7 +37,28 @@
         <platform>all</platform>
         <language>en</language>
         <summary lang="en">VietMedia Movie online</summary>
-        <description lang="en">Add-on play Movie online</description>
+        <description lang="en">Trung tâm giải trí trực tuyến, xem phim, shows, tivi, ca nhạc, karaoke</description>
+    </extension>
+  </addon>
+
+  <addon id="plugin.video.vietmediaplay"
+       name="VietMedia Play"
+       version="2.0.0"
+       provider-name="VietMedia">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0" />
+        <import addon="script.module.simple.downloader" version="1.9.4" />
+        <import addon="plugin.video.youtube" version="4.4.10"/> 
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <language>en</language>
+        <summary lang="en">VietMedia Play online</summary>
+        <description lang="en">Trung tâm giải trí trực tuyến, xem phim, shows, tivi, ca nhạc, karaoke</description>
     </extension>
   </addon>
 

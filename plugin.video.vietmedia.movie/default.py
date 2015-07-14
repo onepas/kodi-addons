@@ -112,7 +112,8 @@ def buildCinemaMenu(url):
     link = jsonObject['url']
     if 'phimhd3s.com' in link:
       client_id = client.client_id_1()
-      link = link.replace('dc469e7a3c7f76e5bfcc0e104526fb85',client_id)
+      if client_id is not None:
+        link = link.replace('dc469e7a3c7f76e5bfcc0e104526fb85',client_id)
     if jsonObject.get('regex'):
       try:
         regex = jsonObject['regex']

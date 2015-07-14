@@ -1,0 +1,5 @@
+<settings>
+	<category label="Thông tin chung">
+		<setting id="user_id" type="text" label="Id của bạn ( đăng ký tại http://vietmedia.kodi.vn )"/>
+	</category>
+</settings>

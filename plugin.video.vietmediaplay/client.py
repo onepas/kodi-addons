@@ -77,7 +77,8 @@ def client_id_1():
 		
 		url_decoded = extract_data(url_encoded)
 		
-		client_id = re.compile('phimhd3s.com/.*?/?(................................)/').findall(url_decoded)
+		#client_id = re.compile('phimhd3s.com/.*?/?(................................)/').findall(url_decoded)
+		client_id = re.compile('/?(................................)/').findall(url_decoded)
 
 		
 		if len(client_id) > 0:

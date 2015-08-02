@@ -1,2 +1,5 @@
 Version 2.0.0 (14/07/2015):
 - Phát hành lần đầu
+
+Version 2.0.1 (02/08/2015):
+- Sửa rạp 8

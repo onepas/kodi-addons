@@ -110,7 +110,7 @@ def buildCinemaMenu(url):
       add_item(title,url,"default",thumb,plot=description,playable=playable)
   elif jsonObject.get('url'):
     link = jsonObject['url']
-    if 'phimhd3s.com' in link:
+    if 'phimhd3s.com' in link or 'vn-hd.com' in link:
       client_id = client.client_id_1()
       if client_id is not None:
         link = link.replace('dc469e7a3c7f76e5bfcc0e104526fb85',client_id)

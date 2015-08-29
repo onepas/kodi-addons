@@ -58,9 +58,6 @@ def menu():
 	url = 'danh-muc/52842dd3169a580a79169efc/tong-hop.html'
 	movies.append({'title':name,'url': moduleName + '.dirs("' + fptplay + url + '")', 'description':'','thumb': defaultThumbnail,'playable':False})
 	
-	movies.append({'title':'Thuý Nga - Tổng hợp','url': moduleName + '.thuynga("http://ott.thuynga.com/vi/genre/index/22/3")', 'description':'','thumb': defaultThumbnail,'playable':False})
-	movies.append({'title':'Thuý Nga - Hài kịch','url': moduleName + '.thuynga("http://ott.thuynga.com/vi/genre/index/26/3")', 'description':'','thumb': defaultThumbnail,'playable':False})
-	movies.append({'title':'Thuý Nga - Hậu trường','url': moduleName + '.thuynga("http://ott.thuynga.com/vi/genre/index/64/3")', 'description':'','thumb': defaultThumbnail,'playable':False})
 	
 	return movies
 

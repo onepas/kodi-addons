@@ -87,4 +87,19 @@ def client_id_1():
 	except:
 		pass
 
+def client_id_2():
+	
+	try:
+		content = make_request('http://hdonline.vn/frontend/episode/loadxmlconfigorder?ep=1&fid=7876')
 
+		url_decoded = re.compile('<jwplayer:file>(.*?)</jwplayer:file>').findall(content)[0]
+		
+		#client_id = re.compile('phimhd3s.com/.*?/?(................................)/').findall(url_decoded)
+		client_id = re.compile('/?(................................)/').findall(url_decoded)
+		
+		if len(client_id) > 0:
+			return client_id[0]
+
+		return None
+	except:
+		pass

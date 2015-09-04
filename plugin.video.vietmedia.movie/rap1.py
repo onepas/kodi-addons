@@ -12,7 +12,8 @@ def make_request(url, params=None, headers=None):
     if headers is None:
         headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:15.0) Gecko/20100101 Firefox/15.0.1',
         		   'Content-type': 'application/x-www-form-urlencoded',
-                   'Referer' : 'http://www.google.com'}
+        		   'X-Requested-With': 'XMLHttpRequest',
+                   'Referer' : 'http://fptplay.net'}
     try:
     	if params is not None:
     		params = urllib.urlencode(params)

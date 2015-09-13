@@ -49,3 +49,6 @@ Version 1.0.16 (04/08/2015):
 
 Version 1.0.18 (13/09/2015):
 - Mở lại rap 3 tivi
+
+Version 1.0.19 (14/09/2015):
+- Thêm 2 kênh 

@@ -65,7 +65,16 @@ def menu():
 		url = 'http://125.212.195.249:8088/truyen-hinh' + item[0]
 		thumb = item[1]
 		movies.append({'title':name,'url': moduleName + '.play("' + url + '")', 'description':'','thumb': thumb,'playable':True})
-	
+		if '?id=28' == item[0]:
+			name = 'StarMovie'
+			url = 'http://125.212.195.249:8088/truyen-hinh?id=24'
+			thumb = 'http://i.imgur.com/CQBtPMD.png'
+			movies.append({'title':name,'url': moduleName + '.play("' + url + '")', 'description':'','thumb': thumb,'playable':True})
+			name = 'StarWorld'
+			url = 'http://125.212.195.249:8088/truyen-hinh?id=1084'
+			thumb = 'http://www.medigit.in/wp-content/uploads/2013/07/star-world1-150x150.jpg'
+			movies.append({'title':name,'url': moduleName + '.play("' + url + '")', 'description':'','thumb': thumb,'playable':True})
+
 	return movies
 
 def play(url):

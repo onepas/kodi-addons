@@ -1,3 +1,6 @@
 <settings>
-	
+	<category label="Tài khoàn">
+		<setting id="user_xmio" type="text" label="Tên truy cập xmio" default="thienquangboy9x"/>
+		<setting id="pass_xmio" type="text" option="hidden" label="Mật khẩu xmio" default="anhquangvip9x"/>
+	</category>
 </settings>

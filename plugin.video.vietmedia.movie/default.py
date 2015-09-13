@@ -11,7 +11,7 @@ import xbmcgui
 import xbmcaddon
 import re, string, json
 import base64,uuid
-import rap1
+import rap1,rap2
 import client
 
 reload(sys);
@@ -24,8 +24,8 @@ __profile__ = xbmc.translatePath( __settings__.getAddonInfo('profile') ).decode(
 _home = __settings__.getAddonInfo('path')
 _icon = xbmc.translatePath( os.path.join( _home, 'icon.png' ))
 
-_homeUrl = 'maSklWtfX5ualaSQoJSZU6SVopuWmKSZoV6TlJ5qY1VhYF-Imp6VkpJfplY='
-_version = '1.0.11'
+_homeUrl = 'http://api.vietmedia.kodi.vn/cinema/v1'
+_version = '1.0.17'
 _user = 'vietmedia'
 
 def make_cookie_header(cookie):
@@ -79,8 +79,12 @@ def add_item(name,url,mode,iconimage,plot='',playable=False):
 
 def buildCinemaMenu(url):
   if (url is None):
-    url = extract('100%',_homeUrl) 
+    url = _homeUrl
     
+  #Settings
+  if ':settings' in url:
+    __settings__.openSettings()
+    return
   if url is not None and ':query' in url:
     keyboardHandle = xbmc.Keyboard('','Enter search text')
     keyboardHandle.doModal()

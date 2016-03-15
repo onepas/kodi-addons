@@ -44,12 +44,21 @@ def fetch_data(url, headers=None):
 def play(data):
   link = data["url"]
   link = getlink.get(link)
-  
+  if link is None or len(link) == 0:
+    notify('Lỗi không lấy được link phim.')
+    return
+  subtitle = ''
+  links = link.split('[]')
+  if len(links) == 2:
+    subtitle = links[1]
+  elif data.get('subtitle'):
+    subtitle = data.get('subtitle')
+  link = links[0]
+
   item = xbmcgui.ListItem(path=link, thumbnailImage=xbmc.getInfoLabel("ListItem.Art(thumb)"))
   xbmcplugin.setResolvedUrl(HANDLE, True, item)
   
-  if data.get('subtitle'):
-    subtitle = data.get('subtitle')
+  if len(subtitle) > 0:
     subtitlePath = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path')).decode("utf-8")
     subfile = xbmc.translatePath(os.path.join(subtitlePath, "temp.sub"))
     try:
@@ -96,7 +105,7 @@ def go():
     play(data)
     return
 
-  if data["content_type"]:
+  if data.get("content_type") and len(data["content_type"]) > 0:
     xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_UNSORTED)
     xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
     xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_DATE)

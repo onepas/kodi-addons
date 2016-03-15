@@ -1,2 +1,4 @@
 Version 1.0.0:
 - Phát hành lần đầu
+Version 1.0.2:
+- Thêm server hd0

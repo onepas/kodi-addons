@@ -7,6 +7,7 @@ import os
 from time import sleep
 from addon import notify, alert, ADDON
 import simplejson as json
+import random
 
 def fetch_data(url, headers=None, data=None):
   	if headers is None:
@@ -34,6 +35,8 @@ def get(url):
 		return get_fptplay(url)
 	if 'fshare.vn' in url:
 		return get_fshare(url)
+	if 'hdonline.vn' in url:
+		return get_hdonline(url)
 	else:
 		return url
 
@@ -69,6 +72,50 @@ def get_fptplay(url):
 		return json_data['stream']
 	pass
 
+def get_hdonline(url):
+	response = fetch_data(url)
+	if not response:
+		return ''
+
+	match = re.search(r'\-(\d+)\.?\d*?\.html$', url)
+	if not match:
+		return
+	fid = match.group(1)
+
+	match = re.search(r'\-tap-(\d+)-[\d.]+?\.html$', url)
+	if not match:
+		ep = 1
+	else:
+		ep = match.group(1)
+	
+	_x = random.random()
+	url_play = ('http://hdonline.vn/frontend/episode/xmlplay?ep=%s&fid=%s&format=json&_x=%s' % (ep, fid, _x))
+
+	headers = { 
+				'User-Agent' 	: 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0',
+				'Referer'		: url,
+				'Cookie'		: response.cookiestring
+			}
+	response = fetch_data(url_play, headers)
+
+	json_data = json.loads(response.body)
+	video_url = json_data['file']
+	if json_data.get('level') and len(json_data['level']) > 0:
+		video_url = json_data['level'][len(json_data['level']) - 1]['file']
+
+	subtitle_url = ''
+	if json_data.get('subtitle') and len(json_data['subtitle']) > 0:
+		for subtitle in json_data['subtitle']:
+			subtitle_url = subtitle['file']
+			if subtitle['code'] == 'vi':
+				subtitle_url = subtitle['file']
+				break
+	if len(subtitle_url) > 0:		
+		subtitle_url = ('http://data.hdonline.vn/api/vsub.php?url=%s' % subtitle_url)
+		return video_url + "[]" + subtitle_url
+	else:
+		return video_url
+
 def get_fshare(url):
 	login_url = 'https://www.fshare.vn/login'
 	logout_url = 'https://www.fshare.vn/logout'
@@ -79,11 +126,11 @@ def get_fshare(url):
 
 	if len(username) == 0  or len(password) == 0:
 		alert(u'Bạn chưa nhập tài khoản fshare'.encode("utf-8"))
-		return ''
+		return
 	
 	response = fetch_data(login_url)
 	if not response:
-		return ''
+		return
 
 	csrf_pattern = '\svalue="(.+?)".*name="fs_csrf"'
 

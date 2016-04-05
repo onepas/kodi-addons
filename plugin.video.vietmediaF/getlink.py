@@ -33,7 +33,7 @@ def fetch_data(url, headers=None, data=None):
 def get(url):
 	if 'fptplay.net' in url:
 		return get_fptplay(url)
-	if 'fshare.vn' in url:
+	if 'www.fshare.vn' in url:
 		return get_fshare(url)
 	if 'hdonline.vn' in url:
 		return get_hdonline(url)

@@ -4,3 +4,5 @@ Version 1.0.2:
 - Thêm server hd0
 Version 1.0.3:
 - Fixed e'p po` lay
+Version 1.0.4:
+- Fixed HDO

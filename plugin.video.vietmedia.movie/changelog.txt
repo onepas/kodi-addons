@@ -52,3 +52,6 @@ Version 1.0.18 (13/09/2015):
 
 Version 1.0.19 (14/09/2015):
 - Thêm 2 kênh 
+
+Version 1.0.20 (23/04/2016):
+- Bổ sung VietmediaF

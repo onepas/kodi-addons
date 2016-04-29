@@ -6,3 +6,5 @@ Version 1.0.3:
 - Fixed e'p po` lay
 Version 1.0.4:
 - Fixed HDO
+Version 1.0.5:
+- Fixed HDO

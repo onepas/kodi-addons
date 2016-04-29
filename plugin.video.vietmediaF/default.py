@@ -93,7 +93,7 @@ def play(data):
         code.write(f.read())
       xbmc.sleep(3000)
       xbmc.Player().setSubtitles(subfile)
-      notify('Tải phụ đề thành công')
+      #notify('Tải phụ đề thành công')
     except:
       notify('Không tải được phụ đề phim.')
 

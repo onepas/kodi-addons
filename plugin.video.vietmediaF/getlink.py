@@ -8,6 +8,7 @@ from time import sleep
 from addon import notify, alert, ADDON
 import simplejson as json
 import random
+import xbmc
 
 def fetch_data(url, headers=None, data=None):
   	if headers is None:
@@ -88,16 +89,21 @@ def get_hdonline(url):
 	else:
 		ep = match.group(1)
 	
-	match = re.search(r'\|Nm(.*?)\|', response.body)
-	token = 'Nm' + match.group(1)
-	
-	match = re.search(r'\|14(\d+)\|', response.body)
-	token_key = '14' + match.group(1)
-	
-	token = token + '-' + token_key
+	match = re.search(r'\|(\w{86})\|', response.body)
+	if match:
+		token = match.group(1)
+		
+		match = re.search(r'\|14(\d+)\|', response.body)
+		token_key = '14' + match.group(1)
+		
+		token = token + '-' + token_key
 
-	_x = random.random()
-	url_play = ('http://hdonline.vn/frontend/episode/xmlplay?ep=%s&fid=%s&format=json&_x=%s&token=%s' % (ep, fid, _x, token))
+		_x = random.random()
+		url_play = ('http://hdonline.vn/frontend/episode/xmlplay?ep=%s&fid=%s&format=json&_x=%s&token=%s' % (ep, fid, _x, token))
+	else:
+		match = re.search(r'"file":"(.*?)","', response.body)
+		url_play = 'http://hdonline.vn' + match.group(1).replace('\/','/') + '&format=json'
+		xbmc.log(url_play)
 
 	headers = { 
 				'User-Agent' 	: 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0',

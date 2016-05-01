@@ -108,7 +108,7 @@ def go():
     return
   #Search
   if '__search__' in url:
-    keyboardHandle = xbmc.Keyboard('','Enter search text')
+    keyboardHandle = xbmc.Keyboard('','VietmediaF')
     keyboardHandle.doModal()
     if (keyboardHandle.isConfirmed()):
       queryText = keyboardHandle.getText()

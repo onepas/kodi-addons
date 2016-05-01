@@ -74,36 +74,50 @@ def get_fptplay(url):
 	pass
 
 def get_hdonline(url):
-	response = fetch_data(url)
-	if not response:
-		return ''
-
-	match = re.search(r'\-(\d+)\.?\d*?\.html$', url)
-	if not match:
-		return
-	fid = match.group(1)
-
-	match = re.search(r'\-tap-(\d+)-[\d.]+?\.html$', url)
-	if not match:
-		ep = 1
-	else:
-		ep = match.group(1)
+	attempt = 1
+	MAX_ATTEMPTS = 5
 	
-	match = re.search(r'\|(\w{86})\|', response.body)
-	if match:
-		token = match.group(1)
-		
-		match = re.search(r'\|14(\d+)\|', response.body)
-		token_key = '14' + match.group(1)
-		
-		token = token + '-' + token_key
+	while attempt < MAX_ATTEMPTS:
+		if attempt > 1: 
+			sleep(2)
+		url_play = ''
+		notify (u'Lấy link lần thứ #%s'.encode("utf-8") % attempt)
+		attempt += 1
+		response = fetch_data(url)
+		if not response:
+			return ''
 
-		_x = random.random()
-		url_play = ('http://hdonline.vn/frontend/episode/xmlplay?ep=%s&fid=%s&format=json&_x=%s&token=%s' % (ep, fid, _x, token))
-	else:
-		match = re.search(r'"file":"(.*?)","', response.body)
-		url_play = 'http://hdonline.vn' + match.group(1).replace('\/','/') + '&format=json'
-		xbmc.log(url_play)
+		match = re.search(r'\-(\d+)\.?\d*?\.html$', url)
+		if not match:
+			return ''
+		fid = match.group(1)
+
+		match = re.search(r'\-tap-(\d+)-[\d.]+?\.html$', url)
+		if not match:
+			ep = 1
+		else:
+			ep = match.group(1)
+		
+		match = re.search(r'\|(\w{86})\|', response.body)
+		if match:
+			token = match.group(1)
+			
+			match = re.search(r'\|14(\d+)\|', response.body)
+			token_key = '14' + match.group(1)
+			
+			token = token + '-' + token_key
+
+			_x = random.random()
+			url_play = ('http://hdonline.vn/frontend/episode/xmlplay?ep=%s&fid=%s&format=json&_x=%s&token=%s' % (ep, fid, _x, token))
+			break
+		else:
+			match = re.search(r'"file":"(.*?)","', response.body)
+			if match:
+				url_play = 'http://hdonline.vn' + match.group(1).replace('\/','/') + '&format=json'
+				break
+	if len(url_play) == 0:
+		notify (u'Không lấy được link.')
+		return ''
 
 	headers = { 
 				'User-Agent' 	: 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0',

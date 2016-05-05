@@ -8,3 +8,5 @@ Version 1.0.4:
 - Fixed HDO
 Version 1.0.5:
 - Fixed HDO
+Version 1.0.7:
+- Fixed HDO

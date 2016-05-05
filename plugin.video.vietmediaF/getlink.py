@@ -114,6 +114,7 @@ def get_hdonline(url):
 			match = re.search(r'"file":"(.*?)","', response.body)
 			if match:
 				url_play = 'http://hdonline.vn' + match.group(1).replace('\/','/') + '&format=json'
+				url_play = url_play.replace('ep=1','ep=' + str(ep))
 				break
 	if len(url_play) == 0:
 		notify (u'Không lấy được link.')

@@ -154,6 +154,21 @@ def get_fshare(url):
 	username = ADDON.getSetting('fshare_username')
 	password = ADDON.getSetting('fshare_password')
 
+	try:
+		url_account = 'http://aku.vn/linksvip'
+		headers = { 
+			'Referer'			: 'http://aku.vn/linksvip',
+			'User-Agent'		: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+		}
+		response = fetch_data(url_account,headers=headers,data={ 'url_download' : url })
+		link_match=re.search("<a href=http:\/\/.*?\.fshare\.vn.*?>(.*?)<", response.body)
+		if link_match:
+			xbmc.log(link_match.group(1))
+			return link_match.group(1)
+
+	except Exception as e:
+		pass
+
 	if len(username) == 0  or len(password) == 0:
 		try:
 			url_account = VIETMEDIA_HOST + '?action=fshare_account'

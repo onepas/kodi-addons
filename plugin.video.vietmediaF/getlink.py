@@ -9,6 +9,7 @@ from addon import notify, alert, ADDON
 import simplejson as json
 import random
 import xbmc
+from config import VIETMEDIA_HOST
 
 def fetch_data(url, headers=None, data=None):
   	if headers is None:
@@ -152,6 +153,16 @@ def get_fshare(url):
 
 	username = ADDON.getSetting('fshare_username')
 	password = ADDON.getSetting('fshare_password')
+
+	if len(username) == 0  or len(password) == 0:
+		try:
+			url_account = VIETMEDIA_HOST + '?action=fshare_account'
+			response = fetch_data(url_account)
+			json_data = json.loads(response.body)
+			username = json_data['username']
+			password = json_data['password']
+		except Exception as e:
+			pass
 
 	if len(username) == 0  or len(password) == 0:
 		alert(u'Bạn chưa nhập tài khoản fshare'.encode("utf-8"))

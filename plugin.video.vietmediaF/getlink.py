@@ -161,10 +161,9 @@ def get_fshare(url):
 			'User-Agent'		: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 		}
 		response = fetch_data(url_account,headers=headers,data={ 'url_download' : url })
-		link_match=re.search("<a href=http:\/\/.*?\.fshare\.vn.*?>(.*?)<", response.body)
+		link_match=re.search("<a href=http://download(.*?)\starget=_blank", response.body)
 		if link_match:
-			xbmc.log(link_match.group(1))
-			return link_match.group(1)
+			return 'http://download' + link_match.group(1)
 
 	except Exception as e:
 		pass

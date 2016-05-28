@@ -14,3 +14,5 @@ Version 1.0.8:
 - Add Fshare Account
 Version 1.0.9:
 - Add Fshare linksvip
+Version 1.0.10:
+- Fix Fshare

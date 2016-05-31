@@ -122,8 +122,9 @@ def get_hdonline(url):
 		return ''
 
 	headers = { 
-				'User-Agent' 	: 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0',
+				'User-Agent' 	: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
 				'Referer'		: url,
+				'Accept'		: 'application/json, text/javascript, */*; q=0.01',
 				'Cookie'		: response.cookiestring
 			}
 	response = fetch_data(url_play, headers)

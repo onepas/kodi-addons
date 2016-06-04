@@ -20,3 +20,5 @@ Version 1.0.11:
 - Fixed HDO
 Version 1.0.12:
 - Default Poster View
+Version 1.0.13:
+- Rollback Default Poster View

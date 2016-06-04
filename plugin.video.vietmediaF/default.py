@@ -155,6 +155,11 @@ def go():
       listitems[i] = (item["path"], listItem, not item["is_playable"])
 
   xbmcplugin.addDirectoryItems(HANDLE, listitems, totalItems=len(listitems))
+  if data["content_type"] != 'episodes':
+    try:
+      xbmc.executebuiltin('Container.SetViewMode(500)')
+    except:
+      pass
   xbmcplugin.endOfDirectory(HANDLE, succeeded=True, updateListing=False, cacheToDisc=True)
 
 go()

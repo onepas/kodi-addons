@@ -33,7 +33,7 @@ def fetch_data(url, headers=None, data=None):
 
 
 def get(url):
-	if 'fptplay.net' in url:
+	if '//fptplay.net' in url:
 		return get_fptplay(url)
 	if 'www.fshare.vn' in url:
 		return get_fshare(url)
@@ -47,6 +47,21 @@ def get_fptplay(url):
 				'Referer'			: 'https://fptplay.net',
     			'X-Requested-With'	: 'XMLHttpRequest'
             }
+	#Kiểm tra live tivi 
+	match = re.search(r'\/livetv\/(.*)$', url)
+	if match:
+		channel_id = match.group(1)
+		data = {
+	  		'id' 	   : channel_id,
+	  		'type'     : 'newchannel',
+	  		'quality'  : 3,
+	  		'mobile'   : 'web'
+	    }
+		response = fetch_data('https://fptplay.net/show/getlinklivetv', headers, data)
+		if response:
+			json_data = json.loads(response.body)
+			return json_data['stream']
+
 	match = re.search(r'\-([\w]+)\.html', url)
 	if not match:
 		return
@@ -78,6 +93,8 @@ def get_hdonline(url):
 	attempt = 1
 	MAX_ATTEMPTS = 5
 	
+	xbmc.log(url)
+
 	while attempt < MAX_ATTEMPTS:
 		if attempt > 1: 
 			sleep(2)
@@ -141,6 +158,9 @@ def get_hdonline(url):
 			if subtitle['code'] == 'vi':
 				subtitle_url = subtitle['file']
 				break
+	
+	xbmc.log(video_url)
+
 	if len(subtitle_url) > 0:		
 		subtitle_url = ('http://data.hdonline.vn/api/vsub.php?url=%s' % subtitle_url)
 		return video_url + "[]" + subtitle_url

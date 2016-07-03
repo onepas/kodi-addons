@@ -129,6 +129,9 @@ def go():
     play(data)
     return
 
+  if not data.get("items"):
+    return
+    
   if data.get("content_type") and len(data["content_type"]) > 0:
     xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_UNSORTED)
     xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)

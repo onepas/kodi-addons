@@ -24,3 +24,5 @@ Version 1.0.13:
 - Rollback Default Poster View
 Version 1.0.14:
 - Add fptplay livetv
+Version 1.0.15:
+- fix folder

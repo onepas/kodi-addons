@@ -26,3 +26,5 @@ Version 1.0.14:
 - Add fptplay livetv
 Version 1.0.15:
 - fix folder
+Version 1.0.16:
+- fix HDO

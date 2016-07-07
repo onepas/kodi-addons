@@ -116,7 +116,7 @@ def get_hdonline(url):
 		else:
 			ep = match.group(1)
 		
-		match = re.search(r'\|(\w{86})\|', response.body)
+		match = re.search(r'\|(\w{86}|\w{96})\|', response.body)
 		if match:
 			token = match.group(1)
 			

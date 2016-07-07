@@ -28,3 +28,5 @@ Version 1.0.15:
 - fix folder
 Version 1.0.16:
 - fix HDO
+Version 1.0.17:
+- Add VTVGO

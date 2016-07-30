@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 #https://www.facebook.com/groups/vietkodi/
 
-import urllib,urllib2
+import urllib,urllib2,re
 import os
 import xbmc,xbmcplugin,xbmcgui,xbmcaddon
 import getlink
@@ -10,6 +10,10 @@ from config import VIETMEDIA_HOST
 from addon import alert, notify, ADDON, ADDON_ID, ADDON_PROFILE
 from platform import PLATFORM
 import uuid
+import SimpleDownloader as downloader
+import remove_accents
+
+downloader = downloader.SimpleDownloader()
 
 reload(sys);
 sys.setdefaultencoding("utf8")
@@ -118,6 +122,9 @@ def go():
       url = url.replace('__search__', queryText)
     else:
       return
+  if '__download__' in url:
+    download(url)
+    return
   data = fetch_data(url)
   if not data:
     return
@@ -151,6 +158,19 @@ def go():
           listItem.setArt(item["art"])
       if item.get("context_menu"):
           listItem.addContextMenuItems(item["context_menu"])
+      elif item["is_playable"] == True:
+          download_context = []
+          title = item["label"]
+          title = re.sub('\[.*?]','',title)
+          title = re.sub('\s','-',title)
+          title = re.sub('--','-',title)
+          title = re.sub('--','-',title)
+          title = re.sub('[\\\\/*?:"<>|#]',"",title)
+          title = remove_accents.remove_accents(title)
+          command = 'XBMC.RunPlugin(%s&d=__download__&file_name=%s)' % (item["path"], title)
+          download_context.append(( 'Download...', command, ))
+          listItem.addContextMenuItems( download_context )
+
       listItem.setProperty("isPlayable", item["is_playable"] and "true" or "false")
       if item.get("properties"):
           for k, v in item["properties"].items():
@@ -158,12 +178,31 @@ def go():
       listitems[i] = (item["path"], listItem, not item["is_playable"])
 
   xbmcplugin.addDirectoryItems(HANDLE, listitems, totalItems=len(listitems))
-  #if data["content_type"] != 'episodes':
-  #  try:
-  #    xbmc.executebuiltin('Container.SetViewMode(500)')
-  #  except:
-  #    pass
+  
   xbmcplugin.endOfDirectory(HANDLE, succeeded=True, updateListing=False, cacheToDisc=True)
+
+def download(url):
+  dialog = xbmcgui.Dialog()
+  download_path = dialog.browse(3, 'XBMC', 'files')
+  if len(download_path) > 0:
+    xbmc.log(url)
+    data = fetch_data(url)
+    if not data:
+      return
+    if data.get('error'):
+      alert(data['error'])
+      return
+    
+    if data.get("url"):
+      link = data["url"]
+      link = getlink.get(link)
+      if link is None or len(link) == 0:
+        notify('Lỗi không lấy được link phim.')
+        return
+      match = re.search(r'file_name=(.*?)$', url)
+      file_name = match.group(1) + ".mp4"
+      params = { "url": link, "download_path": download_path }
+      downloader.download(file_name, params)
 
 go()
 

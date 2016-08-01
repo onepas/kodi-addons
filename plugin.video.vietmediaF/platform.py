@@ -16,7 +16,7 @@ def get_platform():
         if "arm" in os.uname()[4]:
             ret["arch"] = "arm"
     elif xbmc.getCondVisibility("system.platform.xbox"):
-        system_platform = "xbox"
+        ret["os"] = "xbox"
         ret["arch"] = ""
     elif xbmc.getCondVisibility("system.platform.windows"):
         ret["os"] = "windows"

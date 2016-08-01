@@ -11,12 +11,15 @@ import random
 import xbmc
 from config import VIETMEDIA_HOST
 
+USER_VIP_CODE = ADDON.getSetting('user_vip_code')
+
 def fetch_data(url, headers=None, data=None):
   	if headers is None:
 
   		headers = { 
-    				'User-agent'		: 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0',
-                	'Referer'			: 'http://www.google.com'
+    				'User-agent'	: 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0',
+                	'Referer'		: 'http://www.google.com',
+                	'X-User-VIP'    :  USER_VIP_CODE
             }
   	try:
 
@@ -189,6 +192,20 @@ def get_fshare(url):
 	username = ADDON.getSetting('fshare_username')
 	password = ADDON.getSetting('fshare_password')
 
+	if len(username) == 0  or len(password) == 0:
+		try:
+			url_account = VIETMEDIA_HOST + '?action=fshare_account'
+			response = fetch_data(url_account)
+			json_data = json.loads(response.body)
+			username = json_data['username']
+			password = json_data['password']
+		except Exception as e:
+			pass
+
+	if len(username) == 0  or len(password) == 0:
+		alert(u'Bạn chưa nhập tài khoản fshare, hoặc cần phải có VIP code'.encode("utf-8"))
+		return
+
 	try:
 		url_account = 'http://aku.vn/linksvip'
 		headers = { 
@@ -202,20 +219,6 @@ def get_fshare(url):
 
 	except Exception as e:
 		pass
-
-	if len(username) == 0  or len(password) == 0:
-		try:
-			url_account = VIETMEDIA_HOST + '?action=fshare_account'
-			response = fetch_data(url_account)
-			json_data = json.loads(response.body)
-			username = json_data['username']
-			password = json_data['password']
-		except Exception as e:
-			pass
-
-	if len(username) == 0  or len(password) == 0:
-		alert(u'Bạn chưa nhập tài khoản fshare'.encode("utf-8"))
-		return
 	
 	response = fetch_data(login_url)
 	if not response:

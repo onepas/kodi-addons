@@ -32,3 +32,5 @@ Version 1.0.17:
 - Add VTVGO
 Version 1.0.18:
 - Add Download
+Version 1.0.19:
+- Add VIP fshare

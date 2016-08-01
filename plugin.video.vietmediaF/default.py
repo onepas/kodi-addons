@@ -26,6 +26,7 @@ PROFILE_PATH = xbmc.translatePath(ADDON_PROFILE).decode("utf-8")
 VERSION = ADDON.getAddonInfo("version")
 USER = ADDON.getSetting('user_id')
 USER_PIN_CODE = ADDON.getSetting('user_pin_code')
+USER_VIP_CODE = ADDON.getSetting('user_vip_code')
 
 def fetch_data(url, headers=None):
   visitor = get_visitor()
@@ -37,6 +38,7 @@ def fetch_data(url, headers=None):
                 'X-Version'     : VERSION,
                 'X-User'        : USER,
                 'X-User-Pin'    : USER_PIN_CODE,
+                'X-User-VIP'    : USER_VIP_CODE,
                 'X-Platform'    : PLATFORM,
               }
   try:

@@ -2,6 +2,7 @@
 	<category label="Tài khoản">
 		<setting id="user_id" type="number" label="User Id của bạn (đăng ký tại www.vietmediaF.net)"/>
 		<setting id="user_pin_code" type="number" label="Mã PIN (bạn nhập ở diễn đàn)"/>
+		<setting id="user_vip_code" type="number" label="Mã VIP [COLOR green]soạn VMF gửi 8698 (10.000đ) để lấy mã[/COLOR]"/>
 		<setting id="fshare_username" type="text" label="Tài khoản fshare" default=""/>
 		<setting id="fshare_password" type="text" option="hidden" label="Mật khẩu fshare" default=""/>
 	</category>

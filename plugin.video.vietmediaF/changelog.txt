@@ -34,3 +34,5 @@ Version 1.0.18:
 - Add Download
 Version 1.0.19:
 - Add VIP fshare
+Version 1.0.20:
+- Thêm tiện ích khoá thư mục

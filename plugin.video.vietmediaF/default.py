@@ -27,6 +27,7 @@ VERSION = ADDON.getAddonInfo("version")
 USER = ADDON.getSetting('user_id')
 USER_PIN_CODE = ADDON.getSetting('user_pin_code')
 USER_VIP_CODE = ADDON.getSetting('user_vip_code')
+LOCK_PIN = ADDON.getSetting('lock_pin')
 
 def fetch_data(url, headers=None):
   visitor = get_visitor()
@@ -70,6 +71,35 @@ def get_visitor():
       f.write(visitor)
 
   return visitor
+
+def add_lock_dir(item_path):
+  item_path = re.sub('&d=__.*__','',item_path)
+  filename = os.path.join(PROFILE_PATH, 'lock_dir.dat' )
+  with open(filename,"a+") as f:
+    f.write(item_path + "\n")
+  notify('Đã khoá thành công')
+
+def remove_lock_dir(item_path):
+  dialog = xbmcgui.Dialog()
+  result = dialog.input('Nhập mã khoá', type=xbmcgui.INPUT_ALPHANUM, option=xbmcgui.ALPHANUM_HIDE_INPUT)
+  if len(result) == 0 or result != LOCK_PIN:
+    notify('Sai mật mã, vui lòng nhập lại')
+    return
+  item_path = re.sub('&d=__.*__','',item_path)
+  filename = os.path.join(PROFILE_PATH, 'lock_dir.dat' )
+  with open(filename,"r") as f:
+    lines = f.readlines()
+  with open(filename,"w") as f:
+    for line in lines:
+      if line!=item_path + "\n":
+        f.write(line)
+  notify('Đã mở khoá thành công')
+
+def check_lock(item_path):
+  filename = os.path.join(PROFILE_PATH, 'lock_dir.dat' )
+  with open(filename,"r") as f:
+    lines = f.readlines()
+  return (item_path + "\n") in lines
 
 def play(data):
   link = data["url"]
@@ -127,6 +157,19 @@ def go():
   if '__download__' in url:
     download(url)
     return
+  if '__lock__' in url:
+    add_lock_dir(url)
+    return
+  if '__unlock__' in url:
+    remove_lock_dir(url)
+    return
+  if check_lock(url):
+    dialog = xbmcgui.Dialog()
+    result = dialog.input('Nhập mã khoá', type=xbmcgui.INPUT_ALPHANUM, option=xbmcgui.ALPHANUM_HIDE_INPUT)
+    if len(result) == 0 or result != LOCK_PIN:
+      notify('Sai mật mã, vui lòng nhập lại')
+      return
+
   data = fetch_data(url)
   if not data:
     return
@@ -150,7 +193,12 @@ def go():
 
   listitems = range(len(data["items"]))
   for i, item in enumerate(data["items"]):
-      listItem = xbmcgui.ListItem(label=item["label"], label2=item["label2"], iconImage=item["icon"], thumbnailImage=item["thumbnail"])
+      lock_url = item["path"].replace("plugin://%s" % ADDON_ID, VIETMEDIA_HOST )
+      lock_url = re.sub('\?','/?',lock_url)
+      label = item["label"]
+      if check_lock(lock_url):
+        label = "*" + label
+      listItem = xbmcgui.ListItem(label=label, label2=item["label2"], iconImage=item["icon"], thumbnailImage=item["thumbnail"])
       if item.get("info"):
           listItem.setInfo("video", item["info"])
       if item.get("stream_info"):
@@ -158,10 +206,12 @@ def go():
               listItem.addStreamInfo(type_, values)
       if item.get("art"):
           listItem.setArt(item["art"])
+      
+      menu_context = []
       if item.get("context_menu"):
           listItem.addContextMenuItems(item["context_menu"])
       elif item["is_playable"] == True:
-          download_context = []
+          
           title = item["label"]
           title = re.sub('\[.*?]','',title)
           title = re.sub('\s','-',title)
@@ -170,8 +220,13 @@ def go():
           title = re.sub('[\\\\/*?:"<>|#]',"",title)
           title = remove_accents.remove_accents(title)
           command = 'XBMC.RunPlugin(%s&d=__download__&file_name=%s)' % (item["path"], title)
-          download_context.append(( 'Download...', command, ))
-          listItem.addContextMenuItems( download_context )
+          menu_context.append(( 'Download...', command, ))
+
+      command = 'XBMC.RunPlugin(%s&d=__lock__)' % item["path"]
+      menu_context.append(( 'Khoá mục này', command, ))
+      command = 'XBMC.RunPlugin(%s&d=__unlock__)' % item["path"]
+      menu_context.append(( 'Mở khoá mục này', command, ))
+      listItem.addContextMenuItems( menu_context )
 
       listItem.setProperty("isPlayable", item["is_playable"] and "true" or "false")
       if item.get("properties"):

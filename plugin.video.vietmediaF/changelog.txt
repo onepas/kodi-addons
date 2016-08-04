@@ -36,3 +36,5 @@ Version 1.0.19:
 - Add VIP fshare
 Version 1.0.20:
 - Thêm tiện ích khoá thư mục
+Version 1.0.21:
+- bug fixed

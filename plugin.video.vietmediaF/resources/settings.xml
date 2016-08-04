@@ -7,7 +7,7 @@
 		<setting id="fshare_password" type="text" option="hidden" label="Mật khẩu fshare" default=""/>
 	</category>
 	<category label="Khoá thư mục">
-		<setting id="lock_pin" type="text" option="hidden" label="Mã khoá" default=""/>
+		<setting id="lock_pin" type="text" option="hidden" label="Mã khoá" default="0000"/>
 	</category>
 	<category label="Tài trợ/Donate">
 		<setting id="donate_bank" type="bool" label="Nguyễn Ngọc Đức, TK: 0011000469829, Ngân hàng Ngoại thương Việt Nam - Vietcombank" default="true"/>

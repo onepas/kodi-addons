@@ -80,13 +80,16 @@ def add_lock_dir(item_path):
   notify('Đã khoá thành công')
 
 def remove_lock_dir(item_path):
+  filename = os.path.join(PROFILE_PATH, 'lock_dir.dat' )
+  if not os.path.exists(filename):
+    return
   dialog = xbmcgui.Dialog()
   result = dialog.input('Nhập mã khoá', type=xbmcgui.INPUT_ALPHANUM, option=xbmcgui.ALPHANUM_HIDE_INPUT)
   if len(result) == 0 or result != LOCK_PIN:
     notify('Sai mật mã, vui lòng nhập lại')
     return
   item_path = re.sub('&d=__.*__','',item_path)
-  filename = os.path.join(PROFILE_PATH, 'lock_dir.dat' )
+  
   with open(filename,"r") as f:
     lines = f.readlines()
   with open(filename,"w") as f:
@@ -97,6 +100,8 @@ def remove_lock_dir(item_path):
 
 def check_lock(item_path):
   filename = os.path.join(PROFILE_PATH, 'lock_dir.dat' )
+  if not os.path.exists(filename):
+    return False
   with open(filename,"r") as f:
     lines = f.readlines()
   return (item_path + "\n") in lines

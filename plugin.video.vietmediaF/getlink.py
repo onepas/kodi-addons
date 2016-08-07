@@ -184,6 +184,77 @@ def get_hdonline(url):
 	else:
 		return video_url
 
+def get_hash(m):
+	md5 = m or 9
+	s = ''
+	code = 'LinksVIP.Net2014eCrVtByNgMfSvDhFjGiHoJpKlLiEuRyTtYtUbInOj9u4y81r5o26q4a0v'
+	for x in range(0, md5):
+		s = s + code[random.randint(0,len(code)-1)] 
+    
+	return s
+def get_linkvips(username, password):
+	host_url = 'http://linksvip.net'
+	login_url = 'http://linksvip.net/login/'
+	logout_url = 'http://linksvip.net/login/logout.php'
+	getlink_url = 'http://linksvip.net/GetLinkFs'
+	
+	response = fetch_data(host_url)
+	if not response:
+		return
+	
+	cookie = response.cookiestring
+
+	headers = { 
+				'User-Agent' 	: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',
+				'Cookie'		: cookie,
+				'Referer'		: host_url,
+				'Content-Type'	: 'application/x-www-form-urlencoded; charset=UTF-8',
+				'Accept'		: 'application/json, text/javascript, */*; q=0.01',
+				'X-Requested-With'	: 'XMLHttpRequest'
+            }
+	
+	data = {
+			"u"				: username,
+			"p"				: password,
+			"auto_login"	: 'checked'
+		}
+
+	response = fetch_data(login_url, headers, data)
+
+	video_url = ''
+	if response.status == 200:
+		json_data = json.loads(response.body)
+		if int(json_data['status']) == 1:
+			cookie = cookie + ';' + response.cookiestring
+			headers['Cookie'] = cookie
+			data = {
+				"link"			: 'https://www.fshare.vn/file/JS2LKQRBZRLF',
+				"pass"			: 'undefined',
+				"hash"			: get_hash(32),
+				"captcha"		: ''
+
+			}
+			headers['Accept-Encoding'] = 'gzip, deflate'
+			headers['Accept-Language'] = 'en-US,en;q=0.8,vi;q=0.6'
+			
+			response = fetch_data(getlink_url, headers, data)
+
+			json_data = json.loads(response.body)
+
+			link_vip = json_data['linkvip']
+			
+			response = fetch_data(link_vip, headers)
+
+			match = re.search(r'id="linkvip"\stype="text"\svalue="(.*?)"', response.body)
+			if not match:
+				return ''
+			video_url = match.group(1)
+
+			#logout
+			response = fetch_data(logout_url, headers)
+			
+	return video_url
+
 def get_fshare(url):
 	login_url = 'https://www.fshare.vn/login'
 	logout_url = 'https://www.fshare.vn/logout'
@@ -192,14 +263,21 @@ def get_fshare(url):
 	username = ADDON.getSetting('fshare_username')
 	password = ADDON.getSetting('fshare_password')
 
+	direct_url = ''
 	if len(username) == 0  or len(password) == 0:
 		try:
-			url_account = VIETMEDIA_HOST + '?action=fshare_account'
+			url_account = VIETMEDIA_HOST + '?action=fshare_account_linkvips'
 			response = fetch_data(url_account)
 			json_data = json.loads(response.body)
 			username = json_data['username']
 			password = json_data['password']
-		except Exception as e:
+
+			if len(username) > 0  and len(password) > 0:
+				direct_url = get_linkvips(username,password)
+				if len(direct_url) > 0:
+					notify(u'Lấy linkvip thành công.'.encode("utf-8"))
+					return direct_url
+		except:
 			pass
 
 	if len(username) == 0  or len(password) == 0:
@@ -229,7 +307,7 @@ def get_fshare(url):
 	response = fetch_data(login_url, headers, data)
 	headers['Cookie'] = response.cookiestring
 	headers['Referer'] = url
-	direct_url = ''
+	
 	attempt = 1
 	MAX_ATTEMPTS = 8
 	file_id = os.path.basename(url)

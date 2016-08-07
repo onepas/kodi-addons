@@ -38,3 +38,5 @@ Version 1.0.20:
 - Thêm tiện ích khoá thư mục
 Version 1.0.21:
 - bug fixed
+Version 1.0.22:
+- Support linkvips

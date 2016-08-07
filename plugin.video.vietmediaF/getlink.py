@@ -192,7 +192,7 @@ def get_hash(m):
 		s = s + code[random.randint(0,len(code)-1)] 
     
 	return s
-def get_linkvips(username, password):
+def get_linkvips(fshare_url,username, password):
 	host_url = 'http://linksvip.net'
 	login_url = 'http://linksvip.net/login/'
 	logout_url = 'http://linksvip.net/login/logout.php'
@@ -228,7 +228,7 @@ def get_linkvips(username, password):
 			cookie = cookie + ';' + response.cookiestring
 			headers['Cookie'] = cookie
 			data = {
-				"link"			: 'https://www.fshare.vn/file/JS2LKQRBZRLF',
+				"link"			: fshare_url,
 				"pass"			: 'undefined',
 				"hash"			: get_hash(32),
 				"captcha"		: ''
@@ -273,7 +273,7 @@ def get_fshare(url):
 			password = json_data['password']
 
 			if len(username) > 0  and len(password) > 0:
-				direct_url = get_linkvips(username,password)
+				direct_url = get_linkvips(url, username,password)
 				if len(direct_url) > 0:
 					notify(u'Lấy linkvip thành công.'.encode("utf-8"))
 					return direct_url

@@ -44,3 +44,5 @@ Version 1.0.23:
 - bug fixed
 Version 1.0.24:
 - bug fixed
+Version 1.0.25:
+- bug fixed

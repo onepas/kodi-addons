@@ -275,7 +275,7 @@ def get_fshare(url):
 			if len(username) > 0  and len(password) > 0:
 				direct_url = get_linkvips(url, username,password)
 				if len(direct_url) > 0:
-					notify(u'Lấy linkvip thành công.'.encode("utf-8"))
+					notify(u'Lấy link fshare VIP thành công.'.encode("utf-8"))
 					return direct_url
 		except:
 			pass

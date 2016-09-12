@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <addons>
-    <addon id="plugin.video.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.26" provider-name="VietMedia">
+    <addon id="plugin.video.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.27" provider-name="VietMedia">
         <requires>
             <import addon="xbmc.python" version="2.1.0" />
             <import addon="script.module.simple.downloader" version="1.9.4" />
@@ -14,7 +14,7 @@
             <language>en</language>
             <summary lang="en">VietMediaF Video Online</summary>
             <description lang="en">Trung tâm giải trí trực tuyến, xem phim, shows, tivi, ca nhạc, karaoke</description>
-            <disclaimer>Các addon KODI làm ra với mục đích phục vụ cộng đồng miễn phí và các lập trình viên cũng tốn công sức để phục vụ các bạn. Vì vậy, đối với các addon do group làm ra, các bạn xin vui lòng tuân thủ những điều sau: - http://vietmediaf.net - https://www.facebook.com/groups/vietkodi/ - Không được sử dụng mã nguồn mà không xin phép tác giả. - Các addon trong repository Vietmedia thuộc quyền sở hữu của tác giả và cũng không mong muốn đưa các addon này vào trong các repository khác. - Không được thay đổi tên, hoặc các thông tin liên quan đến các add-on trong group. - Và có thể thêm các điều khác (chưa nghĩ ra) Biểu tượng cảm xúc smile Rất mong các bạn tuân thủ và tạo động lực cho chúng tôi trong quá trình phát triển cũng như duy trì những add-on này.</disclaimer>
+            <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn do bên thứ ba cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
         </extension>
     </addon>
     <addon id="plugin.audio.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.0" provider-name="VietMedia">
@@ -31,7 +31,7 @@
             <language>en</language>
             <summary lang="en">VietMediaF Music Online</summary>
             <description lang="en">Trung tâm giải trí, ca nhạc trực tuyến</description>
-            <disclaimer>Các addon KODI làm ra với mục đích phục vụ cộng đồng miễn phí và các lập trình viên cũng tốn công sức để phục vụ các bạn. Vì vậy, đối với các addon do group làm ra, các bạn xin vui lòng tuân thủ những điều sau: - http://vietmediaf.net - https://www.facebook.com/groups/vietkodi/ - Không được sử dụng mã nguồn mà không xin phép tác giả. - Các addon trong repository Vietmedia thuộc quyền sở hữu của tác giả và cũng không mong muốn đưa các addon này vào trong các repository khác. - Không được thay đổi tên, hoặc các thông tin liên quan đến các add-on trong group. - Và có thể thêm các điều khác (chưa nghĩ ra) Biểu tượng cảm xúc smile Rất mong các bạn tuân thủ và tạo động lực cho chúng tôi trong quá trình phát triển cũng như duy trì những add-on này.</disclaimer>
+            <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn do bên thứ ba cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
         </extension>
     </addon>
     <addon id="plugin.video.vietmediaplay" name="VietMedia Play" version="2.0.6" provider-name="VietMedia">
@@ -50,7 +50,7 @@
             <language>en</language>
             <summary lang="en">VietMedia Play online</summary>
             <description lang="en">Trung tâm giải trí trực tuyến, xem phim, shows, tivi, ca nhạc, karaoke</description>
-            <disclaimer>Các addon KODI làm ra với mục đích phục vụ cộng đồng miễn phí và các lập trình viên cũng tốn công sức để phục vụ các bạn. Vì vậy, đối với các addon do group làm ra, các bạn xin vui lòng tuân thủ những điều sau: - https://www.facebook.com/groups/vietkodi/ - Không được sử dụng mã nguồn mà không xin phép tác giả. - Các addon trong repository Vietmedia thuộc quyền sở hữu của tác giả và cũng không mong muốn đưa các addon này vào trong các repository khác. - Không được thay đổi tên, hoặc các thông tin liên quan đến các add-on trong group. - Và có thể thêm các điều khác (chưa nghĩ ra) Biểu tượng cảm xúc smile Rất mong các bạn tuân thủ và tạo động lực cho chúng tôi trong quá trình phát triển cũng như duy trì những add-on này.</disclaimer>
+            <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn do bên thứ ba cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
         </extension>
     </addon>
     <addon id="plugin.video.vietmedia.movie" name="VietMedia Movie" version="1.0.22" provider-name="VietMedia">
@@ -69,7 +69,7 @@
             <language>en</language>
             <summary lang="en">VietMedia Movie online</summary>
             <description lang="en">Add-on play Movie online.</description>
-            <disclaimer>Các addon KODI làm ra với mục đích phục vụ cộng đồng miễn phí và các lập trình viên cũng tốn công sức để phục vụ các bạn. Vì vậy, đối với các addon do group làm ra, các bạn xin vui lòng tuân thủ những điều sau: - https://www.facebook.com/groups/vietkodi/ - Không được sử dụng mã nguồn mà không xin phép tác giả. - Các addon trong repository Vietmedia thuộc quyền sở hữu của tác giả và cũng không mong muốn đưa các addon này vào trong các repository khác. - Không được thay đổi tên, hoặc các thông tin liên quan đến các add-on trong group. - Và có thể thêm các điều khác (chưa nghĩ ra) Biểu tượng cảm xúc smile Rất mong các bạn tuân thủ và tạo động lực cho chúng tôi trong quá trình phát triển cũng như duy trì những add-on này.</disclaimer>
+            <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn do bên thứ ba cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
         </extension>
     </addon>
 </addons>

@@ -99,7 +99,8 @@ def get_vtvgo(url):
 	if not response:
 		return ''
 
-	match = re.search(r'"file": \'(.*?)\'', response.body)
+	#match = re.search(r'"file": \'(.*?)\'', response.body)
+	match = re.search(re.compile(ur'addPlayer\(\'(.*?)\''), response.body)
 	if not match:
 		return ''
 	video_url = match.group(1)

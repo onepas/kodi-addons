@@ -48,3 +48,5 @@ Version 1.0.25:
 - bug fixed
 Version 1.0.26:
 - bug fixed
+Version 1.0.26:
+- HTVOnline added.

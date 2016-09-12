@@ -44,6 +44,8 @@ def get(url):
 		return get_hdonline(url)
 	if '//vtvgo.vn' in url:
 		return get_vtvgo(url)
+	if '//htvonline.com.vn' in url:
+		return get_htvonline(url)
 	else:
 		return url
 
@@ -99,7 +101,6 @@ def get_vtvgo(url):
 	if not response:
 		return ''
 
-	#match = re.search(r'"file": \'(.*?)\'', response.body)
 	match = re.search(re.compile(ur'addPlayer\(\'(.*?)\''), response.body)
 	if not match:
 		return ''
@@ -107,6 +108,17 @@ def get_vtvgo(url):
 	xbmc.log(video_url)
 	return video_url
 
+def get_htvonline(url):
+	response = fetch_data(url)
+	if not response:
+		return ''
+	match = re.search(re.compile(r'setUpPlayer\(\'(.*?)\''), response.body)
+	if not match:
+		return ''
+	video_url = match.group(1)
+	xbmc.log(video_url)
+	return video_url	
+	
 def get_hdonline(url):
 	attempt = 1
 	MAX_ATTEMPTS = 5

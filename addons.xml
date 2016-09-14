@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <addons>
-    <addon id="plugin.video.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.27" provider-name="VietMedia">
+    <addon id="plugin.video.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.28" provider-name="VietMedia">
         <requires>
             <import addon="xbmc.python" version="2.1.0" />
             <import addon="script.module.simple.downloader" version="1.9.4" />

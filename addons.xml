@@ -14,7 +14,7 @@
             <language>en</language>
             <summary lang="en">VietMediaF Video Online</summary>
             <description lang="en">Trung tâm giải trí trực tuyến, xem phim, shows, tivi, ca nhạc, karaoke</description>
-            <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn do bên thứ ba cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
+            <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn tự động do bên các cá nhân và tổ chức cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
         </extension>
     </addon>
     <addon id="plugin.audio.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.0" provider-name="VietMedia">

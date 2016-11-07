@@ -1,0 +1,6 @@
+﻿<settings>
+	<category label="Thông tin Account">
+		<setting id="usernamesctv" type="text" label="Username [COLOR gold]SCTV[/COLOR] (SĐT)"/>
+		<setting id="passwordsctv" type="text" option="hidden" label="Password [COLOR gold]SCTV[/COLOR]"/>
+	</category>
+</settings>

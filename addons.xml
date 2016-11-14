@@ -74,7 +74,7 @@
     </addon>
 	<addon
 	  id="plugin.video.sctv"
-	  version="1.2"
+	  version="2.0"
 	  name="SCTV"
 	  provider-name="thong.ld">
 	  <requires>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <addons>
-    <addon id="plugin.video.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.61" provider-name="VietMedia">
+    <addon id="plugin.video.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.60" provider-name="VietMedia">
         <requires>
             <import addon="xbmc.python" version="2.1.0" />
             <import addon="script.module.simple.downloader" version="1.9.4" />
             <import addon="plugin.video.youtube" version="4.4.10" />
-	    <import addon="script.module.requests" version="1" />
         </requires>
         <extension point="xbmc.python.pluginsource" library="default.py">
             <provides>video</provides>
@@ -17,7 +16,7 @@
             <description lang="en">Trung tâm giải trí trực tuyến, xem phim, shows, tivi, ca nhạc, karaoke</description>
             <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn tự động do bên các cá nhân và tổ chức cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
         </extension>
-</addon>
+    </addon>
     <addon id="plugin.audio.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.0" provider-name="VietMedia">
         <requires>
             <import addon="xbmc.python" version="2.1.0" />

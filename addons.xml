@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <addons>
-    <addon id="plugin.video.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.67" provider-name="VietMedia">
+    <addon id="plugin.video.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.68" provider-name="VietMedia">
         <requires>
             <import addon="xbmc.python" version="2.1.0" />
             <import addon="script.module.simple.downloader" version="1.9.4" />
@@ -92,4 +92,25 @@
 		<platform>all</platform>
 	  </extension>
 	</addon>
-	</addons>
+	<addon id="script.module.requests"
+       name="requests"
+       version="2.9.1"
+       provider-name="kennethreitz, beenje">
+	  <requires>
+		<import addon="xbmc.python" version="2.14.0"/>
+	  </requires>
+	  <extension point="xbmc.python.module"
+				 library="lib" />
+	  <extension point="xbmc.addon.metadata">
+		<summary>Python HTTP for Humans</summary>
+		<description>Packed for KODI from https://github.com/kennethreitz/requests</description>
+		<platform>all</platform>
+		<language></language>
+		<license>Apache2</license>
+		<forum></forum>
+		<website>http://python-requests.org</website>
+		<source>https://github.com/beenje/script.module.requests</source>
+		<email>beenje AT gmail.com</email>
+	  </extension>
+	</addon>
+</addons>

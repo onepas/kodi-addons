@@ -1,116 +1,137 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <addons>
-    <addon id="plugin.video.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.71" provider-name="VietMedia">
-        <requires>
-            <import addon="xbmc.python" version="2.1.0" />
-            <import addon="script.module.simple.downloader" version="1.9.4" />
-            <import addon="plugin.video.youtube" version="4.4.10" />
-	    <import addon="script.module.requests" version="1" />
-        </requires>
-        <extension point="xbmc.python.pluginsource" library="default.py">
-            <provides>video</provides>
-        </extension>
-        <extension point="xbmc.addon.metadata">
-            <platform>all</platform>
-            <language>en</language>
-            <summary lang="en">VietMediaF Video Online</summary>
-            <description lang="en">Trung tâm giải trí trực tuyến, xem phim, shows, tivi, ca nhạc, karaoke</description>
-            <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn tự động do bên các cá nhân và tổ chức cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
-        </extension>
-    </addon>
-    <addon id="plugin.audio.vietmediaF" name="[B]VietMediaF[/B]" version="1.0.0" provider-name="VietMedia">
-        <requires>
-            <import addon="xbmc.python" version="2.1.0" />
-            <import addon="script.module.simple.downloader" version="1.9.4" />
-            <import addon="plugin.video.youtube" version="4.4.10" />
-        </requires>
-        <extension point="xbmc.python.pluginsource" library="default.py">
-            <provides>audio</provides>
-        </extension>
-        <extension point="xbmc.addon.metadata">
-            <platform>all</platform>
-            <language>en</language>
-            <summary lang="en">VietMediaF Music Online</summary>
-            <description lang="en">Trung tâm giải trí, ca nhạc trực tuyến</description>
-            <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn do bên thứ ba cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
-        </extension>
-    </addon>
-    <addon id="plugin.video.vietmediaplay" name="VietMedia Play" version="2.0.6" provider-name="VietMedia">
-        <requires>
-            <import addon="xbmc.python" version="2.1.0" />
-            <import addon="script.module.simple.downloader" version="1.9.4" />
-            <import addon="plugin.video.youtube" version="4.4.10" />
-            <import addon="plugin.video.vietmediaF" version="1.0.4" />
-            <import addon="plugin.audio.vietmediaF" version="1.0.0" />
-        </requires>
-        <extension point="xbmc.python.pluginsource" library="default.py">
-            <provides>video</provides>
-        </extension>
-        <extension point="xbmc.addon.metadata">
-            <platform>all</platform>
-            <language>en</language>
-            <summary lang="en">VietMedia Play online</summary>
-            <description lang="en">Trung tâm giải trí trực tuyến, xem phim, shows, tivi, ca nhạc, karaoke</description>
-            <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn do bên thứ ba cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
-        </extension>
-    </addon>
-    <addon id="plugin.video.vietmedia.movie" name="VietMedia Movie" version="1.0.22" provider-name="VietMedia">
-        <requires>
-            <import addon="xbmc.python" version="2.1.0" />
-            <import addon="script.module.simple.downloader" version="1.9.4" />
-            <import addon="plugin.video.youtube" version="4.4.10" />
-            <import addon="plugin.video.vietmediaF" version="1.0.4" />
-            <import addon="plugin.audio.vietmediaF" version="1.0.0" />
-        </requires>
-        <extension point="xbmc.python.pluginsource" library="default.py">
-            <provides>video</provides>
-        </extension>
-        <extension point="xbmc.addon.metadata">
-            <platform>all</platform>
-            <language>en</language>
-            <summary lang="en">VietMedia Movie online</summary>
-            <description lang="en">Add-on play Movie online.</description>
-            <disclaimer>Addon VIETMEDIAF KODI làm ra với mục đích phục vụ cộng đồng miễn phí. Nguồn media được lấy hoàn toàn do bên thứ ba cung cấp trên mạng Internet, VIETMEDIAF không sở hữu bất kỳ nguồn phát nào và hoàn toàn không chịu trách nhiệm bản quyền các nội dung đó. Ngoài ra việc sử dụng code nguồn, nội dung add-on phải được sự đồng ý của tác giả. FB: Cộng đồng KODI Việt Nam.</disclaimer>
-        </extension>
-    </addon>
-	<addon
-	  id="plugin.video.sctv"
-	  version="2.0"
-	  name="SCTV"
-	  provider-name="thong.ld">
-	  <requires>
-		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.xbmcswift2" version="1.3.1" />
+<addon id="plugin.audio.vietmediaF"
+       name="[B]VietMediaF[/B]"
+       version="1.0.0"
+       provider-name="VietMedia">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+    <import addon="script.module.simple.downloader" version="1.9.4" />
+    <import addon="plugin.video.youtube" version="4.4.10"/>
+ 	</requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>audio</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <language>en</language>
+		<summary lang="en">VietMediaF Music Online</summary>
+		<description lang="en">Trung tâm giải trí, ca nhạc trực tuyến</description>
+    <disclaimer>Các addon KODI làm ra với mục đích phục vụ cộng đồng miễn phí và các lập trình viên cũng tốn công sức để phục vụ các bạn. Vì vậy, đối với các addon do group làm ra, các bạn xin vui lòng tuân thủ những điều sau:
+- http://vietmediaf.net
+- https://www.facebook.com/groups/vietkodi/
+- Không được sử dụng mã nguồn mà không xin phép tác giả.
+- Các addon trong repository Vietmedia thuộc quyền sở hữu của tác giả và cũng không mong muốn đưa các addon này vào trong các repository khác.
+- Không được thay đổi tên, hoặc các thông tin liên quan đến các add-on trong group.
+- Và có thể thêm các điều khác (chưa nghĩ ra) Biểu tượng cảm xúc smile
+Rất mong các bạn tuân thủ và tạo động lực cho chúng tôi trong quá trình phát triển cũng như duy trì những add-on này.</disclaimer>
+    </extension>
+</addon>
+
+<addon
+  id="plugin.video.sctv"
+  version="2.0"
+  name="SCTV"
+  provider-name="thong.ld">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.xbmcswift2" version="1.3.1" />
+    <import addon="script.module.requests" version="1.0" />
+  </requires>
+  <extension library="default.py" point="xbmc.python.pluginsource">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Truyền hình SCTV</summary>
+    <description>Nhóm kênh chính thức của truyền hình SCTV</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.vietmediaF"
+       name="[B]VietMediaF[/B]"
+       version="1.0.71"
+       provider-name="VietMedia">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="plugin.video.youtube" version="4.4.1" />
 		<import addon="script.module.requests" version="1.0" />
-	  </requires>
-	  <extension library="default.py" point="xbmc.python.pluginsource">
-		<provides>video</provides>
-	  </extension>
-	  <extension point="xbmc.addon.metadata">
-		<summary>Truyền hình SCTV</summary>
-		<description>Nhóm kênh chính thức của truyền hình SCTV</description>
+		<import addon="script.module.simple.downloader" version="1.9.5" />
+ 	</requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+	<extension point="xbmc.service" library="autorun.py" start="startup">
+	</extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <language>en</language>
+		<summary lang="en">VietMediaF Video Online</summary>
+		<description lang="en">Trung tâm giải trí trực tuyến, xem phim, shows, tivi, ca nhạc, karaoke của người Việt.
+		Các nguồn nội dung được lấy từ các cá nhân và tổ chức cung cấp và chia sẻ miễn phí trên mạng Internet. Add-on hoạt động như một trình duyệt media, không lưu trữ hay sở hữu bất cứ nguồn nội dung nào. Người dùng chịu trách nhiệm hoàn toàn về việc xem các nguồn nội dung này.</description>
+    <disclaimer>Các nguồn nội dung được lấy từ các cá nhân và tổ chức cung cấp miễn phí trên mạng Internet. Add-on không lưu trữ hay sở hữu bất cứ nguồn nội dung nào. Người dùng chịu trách nhiệm hoàn toàn về việc xem các nguồn nội dung này.
+- http://vietmediaf.net
+- https://www.facebook.com/groups/vietkodi/
+- Không được sử dụng mã nguồn mà không xin phép tác giả.
+- Không được thay đổi tên, hoặc các thông tin liên quan đến các add-on trong group.
+</disclaimer>
+    </extension>
+</addon>
+
+<addon id="repository.vietmedia"
+		name="VietMedia Add-ons"
+		version="1.0.1"
+		provider-name="VietMedia">
+  <extension point="xbmc.addon.repository"
+		name="VietMedia Add-on Repository">
+		<info compressed="true">https://github.com/onepas/kodi-addons/blob/master/addons.xml</info>
+		<checksum>https://github.com/onepas/kodi-addons/blob/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/onepas/kodi-addons</datadir>
+
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">VietMedia Entertainment</summary>
+		<description lang="en"></description>
+		<disclaimer lang="en"></disclaimer>
 		<platform>all</platform>
-	  </extension>
-	</addon>
-	<addon id="script.module.requests"
+	</extension>
+</addon>
+
+<addon id="script.module.requests"
        name="requests"
        version="2.9.1"
        provider-name="kennethreitz, beenje">
-	  <requires>
-		<import addon="xbmc.python" version="2.14.0"/>
-	  </requires>
-	  <extension point="xbmc.python.module"
-				 library="lib" />
-	  <extension point="xbmc.addon.metadata">
-		<summary>Python HTTP for Humans</summary>
-		<description>Packed for KODI from https://github.com/kennethreitz/requests</description>
-		<platform>all</platform>
-		<language></language>
-		<license>Apache2</license>
-		<forum></forum>
-		<website>http://python-requests.org</website>
-		<source>https://github.com/beenje/script.module.requests</source>
-		<email>beenje AT gmail.com</email>
-	  </extension>
-	</addon>
+  <requires>
+    <import addon="xbmc.python" version="2.14.0"/>
+  </requires>
+  <extension point="xbmc.python.module"
+             library="lib" />
+  <extension point="xbmc.addon.metadata">
+    <summary>Python HTTP for Humans</summary>
+    <description>Packed for KODI from https://github.com/kennethreitz/requests</description>
+    <platform>all</platform>
+    <language></language>
+    <license>Apache2</license>
+    <forum></forum>
+    <website>http://python-requests.org</website>
+    <source>https://github.com/beenje/script.module.requests</source>
+    <email>beenje AT gmail.com</email>
+  </extension>
+</addon>
+
+<addon id="script.module.simple.downloader" name="Simple Downloader for xbmc plugins" provider-name="TheCollective" version="1.9.5">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" />
+    <import addon="script.common.plugin.cache" version="2.5.0" />
+    <import addon="script.module.parsedom" version="2.5.1" />
+  </requires>
+  <extension library="default.py" point="xbmc.service" />
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">Simple downloader for xbmc plugins.</summary>
+  </extension>
+  <extension library="lib" point="xbmc.python.module" />
+</addon>
 </addons>

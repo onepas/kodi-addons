@@ -51,7 +51,7 @@ Rất mong các bạn tuân thủ và tạo động lực cho chúng tôi trong 
 
 <addon id="plugin.video.vietmediaF"
        name="[B]VietMediaF[/B]"
-       version="1.0.71"
+       version="1.0.72"
        provider-name="VietMedia">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />

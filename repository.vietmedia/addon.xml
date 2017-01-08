@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="repository.vietmedia"
 		name="VietMedia Add-ons"
-		version="1.0.0"
+		version="1.0.1"
 		provider-name="VietMedia">
-  <requires>
-    <import addon="xbmc.addon" version="12.0.0"/>
-  </requires>
-	<extension point="xbmc.addon.repository"
+  <extension point="xbmc.addon.repository"
 		name="VietMedia Add-on Repository">
-		<info compressed="true">https://raw.github.com/onepas/kodi-addons/master/addons.xml</info>
-		<checksum>https://raw.github.com/onepas/kodi-addons/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.github.com/onepas/kodi-addons/master</datadir>
-		<hashes>true</hashes>
+		<info compressed="true">http://repo.kodi.vn/00-VMFrepo/addons.xml</info>
+		<checksum>http://repo.kodi.vn/00-VMFrepo/addons.xml.md5</checksum>
+		<datadir zip="true">http://repo.kodi.vn/00-VMFrepo/</datadir>
+		
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">VietMedia Entertainment</summary>
